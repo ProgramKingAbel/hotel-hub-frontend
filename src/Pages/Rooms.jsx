@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchRooms } from '../redux/features/rooms/roomsSlice';
 
@@ -8,6 +8,7 @@ const Rooms = () => {
   const rooms = useSelector((state) => state.room.rooms);
   const isLoading = useSelector((state) => state.room.isLoading);
   const error = useSelector((state) => state.room.error);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchRooms());
@@ -33,8 +34,9 @@ const Rooms = () => {
   return (
     <div>
       {rooms.map((room) => (
-        <div key={room.id} onClick={() => handleRoomClick(room.id)}>
+        <div key={room.id}>
           <p>{room.name}</p>
+          <button type="button" onClick={() => handleRoomClick(room.id)}>View Room Details</button>
         </div>
       ))}
     </div>
