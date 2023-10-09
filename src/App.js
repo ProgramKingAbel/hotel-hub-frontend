@@ -1,5 +1,9 @@
 import React from 'react';
-import { Rooms, RoomItem, Reservations, Profile, Register} from './Pages';
+import { Routes, Route } from 'react-router-dom';
+import { Layout } from './components';
+import {
+  Rooms, RoomItem, Reservations, Profile, Register,
+} from './Pages';
 
 const App = () => (
   <Routes>
