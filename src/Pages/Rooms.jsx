@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchRooms } from '../redux/features/rooms/roomsSlice';
 
@@ -8,14 +8,14 @@ const Rooms = () => {
   const rooms = useSelector((state) => state.room.rooms);
   const isLoading = useSelector((state) => state.room.isLoading);
   const error = useSelector((state) => state.room.error);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchRooms());
   }, [dispatch]);
 
   const handleRoomClick = (roomId) => {
-    history.push(`/room/${roomId}`);
+    navigate(`room/${roomId}`);
   };
 
   if (isLoading) {

@@ -14,11 +14,10 @@ const RoomItem = () => {
 
   return (
     <div>
-      {roomDetails.map((detail) => (
-        <div key={detail.id}>
-          <p>{detail.name}</p>
-        </div>
-      ))}
+      <div key={roomDetails.name}>
+        <p>{roomDetails.description}</p>
+      </div>
+      <button type="button">Reserve this room</button>
     </div>
   );
 };
