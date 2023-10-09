@@ -7,9 +7,9 @@ import {
 
 const App = () => (
   <Routes>
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Register />} />
-      <Route path="Rooms" element={<Rooms />} />
+    <Route path="/" element={<Register />} />
+    <Route path="/app" element={<Layout />}>
+      <Route index element={<Rooms />} />
       <Route path="Room" element={<RoomItem />} />
       <Route path="Reservations" element={<Reservations />} />
       <Route path="Profile" element={<Profile />} />
