@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchRooms } from '../redux/features/rooms/roomsSlice';
 
@@ -11,6 +12,10 @@ const Rooms = () => {
   useEffect(() => {
     dispatch(fetchRooms());
   }, [dispatch]);
+
+  const handleRoomClick = (roomId) => {
+    history.push(`/room/${roomId}`);
+  };
 
   if (isLoading) {
     return (<div>Loading...</div>);
@@ -28,7 +33,9 @@ const Rooms = () => {
   return (
     <div>
       {rooms.map((room) => (
-        <p key={room.id}>{room.name}</p>
+        <div key={room.id} onClick={() => handleRoomClick(room.id)}>
+          <p>{room.name}</p>
+        </div>
       ))}
     </div>
   );
