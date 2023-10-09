@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const links = [
-    { path: '/', text: 'Sign Up' },
+    { path: '/', text: 'Register' },
     { path: 'Rooms', text: 'Rooms' },
     { path: 'Reservations', text: 'Reserve a Room' },
     { path: 'Profile', text: 'My Reservations' },

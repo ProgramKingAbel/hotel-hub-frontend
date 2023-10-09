@@ -1,15 +1,16 @@
 import React from 'react';
-import { Button } from '@material-tailwind/react';
+import { Rooms, RoomItem, Reservations, Profile, Register} from './Pages';
 
-function App() {
-  return (
-    <div>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-      <Button>Button</Button>
-    </div>
-  );
-}
+const App = () => (
+  <Routes>
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Register />} />
+      <Route path="Rooms" element={<Rooms />} />
+      <Route path="Room" element={<RoomItem />} />
+      <Route path="Reservations" element={<Reservations />} />
+      <Route path="Profile" element={<Profile />} />
+    </Route>
+  </Routes>
+);
 
 export default App;
