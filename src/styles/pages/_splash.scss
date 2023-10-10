@@ -1,0 +1,30 @@
+.splash {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background-image:
+    linear-gradient(
+      to right bottom,
+      rgba($primary-color-light, 0.4),
+      rgba($primary-color-dark, 0.4)
+    ),
+    url(../../../public/images/carousel_4.jpg);
+  background-size: cover;
+  background-position: top;
+
+  &-nav {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    img {
+      width: 3%;
+      cursor: pointer;
+    }
+  }
+}
