@@ -1,0 +1,15 @@
+.splash_intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3.125rem;
+  gap: 0.313rem;
+  width: 60%;
+  height: 80%;
+
+  &-btns {
+    display: flex;
+    gap: 0.625rem;
+    margin-top: 1.25rem;
+  }
+}
