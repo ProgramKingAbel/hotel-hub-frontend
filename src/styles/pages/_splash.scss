@@ -28,3 +28,24 @@
     }
   }
 }
+
+@media screen and (max-width: 40rem) {
+  .splash {
+    justify-content: center;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-white, 0.4),
+        rgba($primary-color-dark, 0.4)
+      ),
+      url(../../../public/images/carousel_3.jpg);
+
+    &-nav {
+      display: none;
+    }
+
+    &_intro {
+      width: 100%;
+      align-items: center;
+    }
+  }
+}
