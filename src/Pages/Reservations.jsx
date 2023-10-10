@@ -31,7 +31,6 @@ const Reservation = () => {
     // Create a new reservation
     dispatch(createReservation({ name, date, roomId: selectedRoomId, userId: user.id }));
   };
-
   return (
     <div>
       <h1>Booking</h1>
