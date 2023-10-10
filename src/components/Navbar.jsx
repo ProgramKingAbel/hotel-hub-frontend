@@ -25,6 +25,12 @@ const links = [
 const Navbar = () => {
   const { pathname } = useLocation();
   const [openMobileNav, setOpenMobileNav] = useState(false);
+  const [activeLink, setActiveLink] = useState(pathname);
+
+  const handleNavLinkClick = (path) => {
+    setActiveLink(path);
+    setOpenMobileNav(false);
+  };
 
   const toggleMobileNav = () => {
     setOpenMobileNav(!openMobileNav);
@@ -45,7 +51,10 @@ const Navbar = () => {
               {pathname !== '/' ? (
                 <NavLink
                   to={link.path}
-                  className="text-blue-700 hover:text-blue-900 flex items-center"
+                  className={`text-blue-700 hover:text-blue-900 flex items-center ${
+                    link.path === activeLink ? 'bg-blue-200' : ''
+                  }`}
+                  onClick={() => handleNavLinkClick(link.path)}
                 >
                   {React.createElement(link.icon, {
                     className: 'h-5 w-5 mr-2',
@@ -109,8 +118,10 @@ const Navbar = () => {
               {pathname !== '/' ? (
                 <NavLink
                   to={link.path}
-                  className="text-blue-700 hover:text-blue-900 flex items-center"
-                  onClick={() => setOpenMobileNav(false)} // Added onClick handler
+                  className={`text-blue-700 hover:text-blue-900 flex items-center ${
+                    link.path === activeLink ? 'bg-blue-400' : ''
+                  }`}
+                  onClick={() => handleNavLinkClick(link.path)}
                 >
                   {React.createElement(link.icon, {
                     className: 'h-5 w-5 mr-2',
@@ -122,7 +133,6 @@ const Navbar = () => {
               )}
             </ListItem>
           ))}
-
         </List>
       </MobileNav>
     </>
