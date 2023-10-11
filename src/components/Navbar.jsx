@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   Typography,
   List,
@@ -7,19 +7,19 @@ import {
   Card,
   MobileNav,
   IconButton,
-} from '@material-tailwind/react';
+} from "@material-tailwind/react";
 import {
   HomeIcon,
   ShoppingBagIcon,
   UserCircleIcon,
   PowerIcon,
-} from '@heroicons/react/24/solid';
+} from "@heroicons/react/24/solid";
 
 const links = [
-  { path: '/app', text: 'Rooms', icon: HomeIcon },
-  { path: '/app/Reservations', text: 'Reserve a Room', icon: ShoppingBagIcon },
-  { path: '/app/Profile', text: 'My Reservations', icon: UserCircleIcon },
-  { path: '/', text: 'Sign Out', icon: PowerIcon },
+  { path: "/app", text: "Rooms", icon: HomeIcon },
+  { path: "/app/Reservations", text: "Reserve a Room", icon: ShoppingBagIcon },
+  { path: "/app/Profile", text: "My Reservations", icon: UserCircleIcon },
+  { path: "/", text: "Sign Out", icon: PowerIcon },
 ];
 
 const Navbar = () => {
@@ -38,8 +38,8 @@ const Navbar = () => {
 
   return (
     <>
-      <Card className="h-[calc(100vh)] w-full gap-8 hidden md:flex rounded-none pl-3">
-        <h2>
+      <Card className="h-[calc(100vh)] w-full p-2 gap-8 hidden md:flex rounded-none">
+        <h2 className="mt-3">
           <Typography variant="h6" color="black" className="font-semibold mb-4">
             DASHBOARD
           </Typography>
@@ -48,16 +48,15 @@ const Navbar = () => {
         <List>
           {links.map((link) => (
             <ListItem key={link.text} className="mb-2">
-              {pathname !== '/' ? (
+              {pathname !== "/" ? (
                 <NavLink
                   to={link.path}
-                  className={`text-blue-700 hover:text-blue-900 flex items-center ${
-                    link.path === activeLink ? 'bg-blue-200' : ''
+                  className={`hover:text-blue-900 flex items-center ${
+                    link.path === activeLink ? "active" : ""
                   }`}
-                  onClick={() => handleNavLinkClick(link.path)}
-                >
+                  onClick={() => handleNavLinkClick(link.path)}>
                   {React.createElement(link.icon, {
-                    className: 'h-5 w-5 mr-2',
+                    className: "h-5 w-5 mr-2",
                   })}
                   {link.text}
                 </NavLink>
@@ -73,8 +72,7 @@ const Navbar = () => {
         variant="text"
         className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
         ripple={false}
-        onClick={toggleMobileNav}
-      >
+        onClick={toggleMobileNav}>
         {openMobileNav ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -82,8 +80,7 @@ const Navbar = () => {
             className="h-6 w-6"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            strokeWidth={2}
-          >
+            strokeWidth={2}>
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -96,8 +93,7 @@ const Navbar = () => {
             className="h-6 w-6"
             fill="none"
             stroke="currentColor"
-            strokeWidth={2}
-          >
+            strokeWidth={2}>
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -110,21 +106,19 @@ const Navbar = () => {
       <MobileNav
         open={openMobileNav}
         onClose={() => setOpenMobileNav(false)}
-        className="xl:hidden h-[calc(100vh)] w-full p-4 bg-gray-300 gap-8 md:flex rounded-none "
-      >
+        className="xl:hidden h-[calc(100vh)] w-full p-4 bg-gray-300 gap-8 md:flex rounded-none ">
         <List>
           {links.map((link) => (
             <ListItem key={link.text} className="">
-              {pathname !== '/' ? (
+              {pathname !== "/" ? (
                 <NavLink
                   to={link.path}
                   className={`text-blue-700 hover:text-blue-900 flex items-center ${
-                    link.path === activeLink ? 'active' : ''
+                    link.path === activeLink ? "active" : ""
                   }`}
-                  onClick={() => handleNavLinkClick(link.path)}
-                >
+                  onClick={() => handleNavLinkClick(link.path)}>
                   {React.createElement(link.icon, {
-                    className: 'h-5 w-5 mr-2',
+                    className: "h-5 w-5 mr-2",
                   })}
                   {link.text}
                 </NavLink>
