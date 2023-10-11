@@ -5,12 +5,6 @@
 
 /* Move the navigation controls to the top-right corner */
 
-.owl-carousel{
-}
-
-.owl-item{
-    background-color: none !important;
-}
 
 .owl-carousel .owl-item img{
     width: 60% !important;    
@@ -20,21 +14,23 @@
 .owl-prev {
     position: absolute;
     top: 17%;
-    left: -2%;
+    left: -5%;
     color: #fff !important;
-    width: 50px;
+    width: 70px;
     border-radius: 0 30px 30px 0!important;
     background-color: #98bf10 !important;
+    padding: 5px;
   }
   
   .owl-next {
     position: absolute !important;
     top: 17%;
-    right: -2%;
+    right: -3.5%;
     color: #fff !important;
-    width: 50px;
+    width: 70px;
     border-radius:  30px 0 0 30px !important;
     background-color: #98bf10 !important;
+    padding: 5px;
   }
 
 
@@ -69,10 +65,19 @@
     border: 1px dashed #000;
   }
 
+  .font-black{
+    color: #000 !important;
+  }
+
   @media (max-width: 760px) {
     .owl-carousel .owl-item img {
         width: 60% !important;
         height: 230px !important;
         border-radius: 535px;
+
     }
+
+ 
 }
+
+  

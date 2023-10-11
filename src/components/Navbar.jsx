@@ -38,7 +38,7 @@ const Navbar = () => {
 
   return (
     <>
-      <Card className="h-[calc(100vh)] w-full p-4 bg-gray-300 gap-8 hidden md:flex rounded-none">
+      <Card className="h-[calc(100vh)] w-full gap-8 hidden md:flex rounded-none pl-3">
         <h2>
           <Typography variant="h6" color="black" className="font-semibold mb-4">
             DASHBOARD
@@ -119,7 +119,7 @@ const Navbar = () => {
                 <NavLink
                   to={link.path}
                   className={`text-blue-700 hover:text-blue-900 flex items-center ${
-                    link.path === activeLink ? 'bg-blue-400' : ''
+                    link.path === activeLink ? 'active' : ''
                   }`}
                   onClick={() => handleNavLinkClick(link.path)}
                 >

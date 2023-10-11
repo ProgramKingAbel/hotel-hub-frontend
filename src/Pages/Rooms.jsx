@@ -30,9 +30,9 @@ const Rooms = () => {
   }
 
   return (
-    <div className="container mx-auto max-w-screen-xl lg:pl-40 w-full room_container bg-orange-950">
-      <div className="text-center flex flex-col items-center">
-        <h1 className="font-sans text-4xl font-black lg:text-3xl uppercase">
+    <div className="container mx-auto max-w-screen-xl lg:pl-40 w-full room_container pt-40">
+      <div className="text-center flex flex-col items-center pt-7">
+        <h1 className="text-4xl font-black lg:text-3xl uppercase text-zinc-950">
           Available Rooms
         </h1>
         <h6 className="mb-10 font-serif text-gray-500">
@@ -57,9 +57,6 @@ const Rooms = () => {
             },
             992: {
               items: 3, // Show 3 items on screens 992px wide and wider (small desktop)
-            },
-            1200: {
-              items: 3, // Show 4 items on screens 1200px wide and wider (larger desktop)
             },
           }}
         >
