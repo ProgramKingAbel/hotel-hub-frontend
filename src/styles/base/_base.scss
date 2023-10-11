@@ -9,4 +9,17 @@
 body {
   box-sizing: border-box;
   color: $color-white;
+
+  .navbar {
+    width: 100%;
+
+    .rounded-lg {
+      border-radius: 0 !important;
+
+      &:hover {
+        background-color: $primary-color !important;
+        color: $color-white !important;
+      }
+    }
+  }
 }
