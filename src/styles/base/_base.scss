@@ -36,4 +36,15 @@ body {
       padding: inherit !important;
     }
   }
+
+  .toggle_icon {
+    color: $primary-color;
+    cursor: pointer;
+    margin: 5px;
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
 }
