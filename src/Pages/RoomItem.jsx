@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchRoomDetailsById } from '../redux/features/rooms/roomsSlice';
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRoomDetailsById } from "../redux/features/rooms/roomsSlice";
 
 const RoomItem = () => {
   const { roomId } = useParams();
@@ -13,7 +13,7 @@ const RoomItem = () => {
   }, [dispatch, roomId]);
 
   return (
-    <div>
+    <div className="container mx-auto max-w-screen-xl lg:pl-40 w-full room_container pt-40">
       <div key={roomDetails.name}>
         <p>{roomDetails.description}</p>
       </div>
