@@ -59,9 +59,9 @@ const Navbar = () => {
   return (
     <>
       <Card className="h-[calc(100vh)] w-full p-2 gap-8 hidden md:flex rounded-none navbar">
-        <h2 className="mt-3">
-          <Typography variant="h6" color="black" className="font-semibold mb-4">
-            DASHBOARD
+        <h2 className="mt-3 ml-4 nav_brand">
+          <Typography variant="h3" color="black" className="font-semibold mb-4">
+            Hotel Hob
           </Typography>
         </h2>
 

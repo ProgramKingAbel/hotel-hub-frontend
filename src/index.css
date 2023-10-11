@@ -62,7 +62,7 @@
   }
 
   .line{
-    border: 1px dashed #000;
+    border: 1px dashed rgba(192, 192, 192, 0.658);
   }
 
   .font-black{
