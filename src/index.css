@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* Move the navigation controls to the top-right corner */
 
 .owl-carousel .owl-item img {
@@ -44,7 +43,6 @@
 .owl-next span {
   font-size: 30px !important;
 }
-
 
 /* Style the navigation controls on hover */
 .owl-prev:hover,
