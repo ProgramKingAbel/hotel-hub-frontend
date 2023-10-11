@@ -5,7 +5,6 @@ import {
   Typography,
   Tooltip,
 } from '@material-tailwind/react';
-import './Room_card.css';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
