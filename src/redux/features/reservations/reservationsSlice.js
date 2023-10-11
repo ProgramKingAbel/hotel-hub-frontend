@@ -2,6 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const BASE_URL = `${process.env.REACT_APP_HOST_URL}reservations`;
+const customHeader = {
+  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1NTEzYjAwZi02NzE5LTQwNzEtYTNiZi03YzY0YTc4OTFkODkiLCJzdWIiOiIzIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjk3MDM0MDc3LCJleHAiOjE2OTcwNDEyNzd9.g57-Gupy5Wiqq6Ix8SSharQAf3vBUTGLVaeFks-DrSQ',
+};
 
 const initialState = {
   isLoading: false,
@@ -12,12 +15,7 @@ const initialState = {
 };
 
 export const fetchReservations = createAsyncThunk('reservations/fetchReservations', async () => {
-  const response = await axios.get(BASE_URL);
-  return response.data;
-});
-
-export const fetchReservationDetailsById = createAsyncThunk('reservations/fetchReservationDetailsById', async (reservationId) => {
-  const response = await axios.get(`${BASE_URL}/${reservationId}`);
+  const response = await axios.get(BASE_URL, { headers: customHeader });
   return response.data;
 });
 
@@ -44,7 +42,6 @@ const reservationsSlice = createSlice({
       state.error = '';
       state.isLoading = false;
     });
- 
   },
 });
 

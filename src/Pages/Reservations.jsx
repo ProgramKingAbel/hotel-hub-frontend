@@ -1,11 +1,15 @@
+// eslint disable //
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createReservation, fetchReservations, fetchReservationDetailsById, fetchRooms } from '../redux/features/reservations/reservationsSlice';
+import {
+  createReservation, fetchReservations,
+} from '../redux/features/reservations/reservationsSlice';
 
 const Reservation = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const reservations = useSelector((state) => state.reservations.reservations);
+  console.log(reservations);
   const rooms = useSelector((state) => state.reservations.rooms);
 
   const [name, setName] = useState('');
@@ -14,18 +18,8 @@ const Reservation = () => {
 
   useEffect(() => {
     // Fetch user's reservations when the component mounts
-    dispatch(fetchReservations(user.id));
-    // Fetch available rooms when the component mounts
-    dispatch(fetchRooms());
-  }, [dispatch, user.id]);
-
-  useEffect(() => {
-    // Autofill name when a room is selected
-    const selectedRoom = rooms.find((room) => room.id === selectedRoomId);
-    if (selectedRoom) {
-      setName(selectedRoom.name);
-    }
-  }, [selectedRoomId, rooms]);
+    dispatch(fetchReservations());
+  }, [dispatch]);
 
   const handleReservationSubmit = () => {
     // Create a new reservation
@@ -35,9 +29,12 @@ const Reservation = () => {
   };
 
   return (
+
     <div>
       <h1>Booking</h1>
+
       <div className="reservation-form">
+
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -46,12 +43,14 @@ const Reservation = () => {
           onChange={(e) => setName(e.target.value)}
         />
         <label htmlFor="date">Date:</label>
+
         <input
           type="date"
           id="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
+
         <label htmlFor="room">Select a Room:</label>
         <select
           id="room"
