@@ -8,63 +8,44 @@ const initialState = {
   reservations: [],
   error: '',
   reservationDetails: {},
+  rooms: [],
 };
 
-// Create an async thunk for fetching reservations
 export const fetchReservations = createAsyncThunk('reservations/fetchReservations', async () => {
-  try {
-    const response = await axios.get(BASE_URL);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const response = await axios.get(BASE_URL);
+  return response.data;
 });
 
-// Create an async thunk for fetching reservation details by ID
 export const fetchReservationDetailsById = createAsyncThunk('reservations/fetchReservationDetailsById', async (reservationId) => {
-  try {
-    const response = await axios.get(`${BASE_URL}/${reservationId}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const response = await axios.get(`${BASE_URL}/${reservationId}`);
+  return response.data;
 });
 
-// Define the reservation slice
-const reservationSlice = createSlice({
+export const fetchRooms = createAsyncThunk('reservations/fetchRooms', async () => {
+  const response = await axios.get(`${BASE_URL}/rooms`);
+  return response.data;
+});
+
+// Add a new async thunk for creating reservations
+export const createReservation = createAsyncThunk('reservations/createReservation', async (reservationData) => {
+  const response = await axios.post(`${BASE_URL}/create`, reservationData);
+  return response.data;
+});
+
+const reservationsSlice = createSlice({
   name: 'reservation',
   initialState,
+  reducers: {
+    // Add any other reducers you need
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchReservations.fulfilled, (state, action) => {
       state.reservations = action.payload;
       state.error = '';
       state.isLoading = false;
     });
-
-    builder.addCase(fetchReservations.pending, (state) => {
-      state.isLoading = true;
-    });
-
-    builder.addCase(fetchReservations.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.error.message;
-    });
-
-    builder.addCase(fetchReservationDetailsById.pending, (state) => {
-      state.isLoading = true;
-    });
-
-    builder.addCase(fetchReservationDetailsById.fulfilled, (state, action) => {
-      state.reservationDetails = action.payload;
-      state.isLoading = false;
-      state.error = '';
-    });
-
-    builder.addCase(fetchReservationDetailsById.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.error.message;
-    });
+ 
   },
 });
 
-export default reservationSlice.reducer;
+export default reservationsSlice.reducer;

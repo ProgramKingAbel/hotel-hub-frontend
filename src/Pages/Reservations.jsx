@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReservationDetailsById, fetchReservations } from '../redux/features/reservations/reservationsSlice'; 
+import { createReservation, fetchReservations, fetchReservationDetailsById, fetchRooms } from '../redux/features/reservations/reservationsSlice';
 
 const Reservation = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user); 
-  const reservations = useSelector((state) => state.reservations);  
-  const rooms = useSelector((state) => state.rooms);  
+  const user = useSelector((state) => state.user);
+  const reservations = useSelector((state) => state.reservations.reservations);
+  const rooms = useSelector((state) => state.reservations.rooms);
 
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
@@ -21,7 +21,7 @@ const Reservation = () => {
 
   useEffect(() => {
     // Autofill name when a room is selected
-    const selectedRoom = rooms.find(room => room.id === selectedRoomId);
+    const selectedRoom = rooms.find((room) => room.id === selectedRoomId);
     if (selectedRoom) {
       setName(selectedRoom.name);
     }
@@ -29,26 +29,32 @@ const Reservation = () => {
 
   const handleReservationSubmit = () => {
     // Create a new reservation
-    dispatch(createReservation({ name, date, roomId: selectedRoomId, userId: user.id }));
+    dispatch(createReservation({
+      name, date, roomId: selectedRoomId, userId: user.id,
+    }));
   };
+
   return (
     <div>
       <h1>Booking</h1>
       <div className="reservation-form">
-        <label>Name:</label>
+        <label htmlFor="name">Name:</label>
         <input
           type="text"
+          id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <label>Date:</label>
+        <label htmlFor="date">Date:</label>
         <input
           type="date"
+          id="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
-        <label>Select a Room:</label>
+        <label htmlFor="room">Select a Room:</label>
         <select
+          id="room"
           value={selectedRoomId}
           onChange={(e) => setSelectedRoomId(e.target.value)}
         >
@@ -59,15 +65,21 @@ const Reservation = () => {
             </option>
           ))}
         </select>
-        <button onClick={handleReservationSubmit}>Reserve</button>
+        <button type="button" onClick={handleReservationSubmit}>Reserve</button>
       </div>
 
       <h2>My Reservations</h2>
       <ul>
         {reservations.map((reservation) => (
           <li key={reservation.id}>
-            <p>Name: {reservation.name}</p>
-            <p>Date: {reservation.date}</p>
+            <p>
+              Name:
+              {reservation.name}
+            </p>
+            <p>
+              Date:
+              {reservation.date}
+            </p>
           </li>
         ))}
       </ul>
