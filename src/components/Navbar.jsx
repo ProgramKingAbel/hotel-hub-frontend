@@ -16,10 +16,30 @@ import {
 } from '@heroicons/react/24/solid';
 
 const links = [
-  { path: '/app', text: 'Rooms', icon: HomeIcon },
-  { path: '/app/Reservations', text: 'Reserve a Room', icon: ShoppingBagIcon },
-  { path: '/app/Profile', text: 'My Reservations', icon: UserCircleIcon },
-  { path: '/', text: 'Sign Out', icon: PowerIcon },
+  {
+    path: '/app',
+    text: 'Rooms',
+    icon: HomeIcon,
+    exact: true,
+  },
+  {
+    path: '/app/Reservations',
+    text: 'Reserve a Room',
+    icon: ShoppingBagIcon,
+    exact: false,
+  },
+  {
+    path: '/app/Profile',
+    text: 'My Reservations',
+    icon: UserCircleIcon,
+    exact: false,
+  },
+  {
+    path: '/',
+    text: 'Sign Out',
+    icon: PowerIcon,
+    exact: false,
+  },
 ];
 
 const Navbar = () => {
@@ -38,22 +58,23 @@ const Navbar = () => {
 
   return (
     <>
-      <Card className="h-[calc(100vh)] w-full p-4 bg-gray-300 gap-8 hidden md:flex rounded-none">
-        <h2>
-          <Typography variant="h6" color="black" className="font-semibold mb-4">
-            DASHBOARD
+      <Card className="h-[calc(100vh)] w-full p-2 gap-5 hidden md:flex rounded-none navbar">
+        <h2 className="mt-3 ml-4 nav_brand">
+          <Typography variant="h3" color="black" className="font-semibold mb-4">
+            Hotel Hub
           </Typography>
         </h2>
 
         <List>
           {links.map((link) => (
-            <ListItem key={link.text} className="mb-2">
+            <ListItem key={link.text} className="mb-2 ml-4 list">
               {pathname !== '/' ? (
                 <NavLink
+                  exact={link.exact}
                   to={link.path}
-                  className={`text-blue-700 hover:text-blue-900 flex items-center ${
-                    link.path === activeLink ? 'bg-blue-200' : ''
-                  }`}
+                  className={`flex items-center p-2 text-lg rounded-none  ${
+                    link.path === activeLink ? 'bg-blue-500' : ''
+                  }`} // Apply the conditional class here
                   onClick={() => handleNavLinkClick(link.path)}
                 >
                   {React.createElement(link.icon, {
@@ -71,7 +92,7 @@ const Navbar = () => {
 
       <IconButton
         variant="text"
-        className="ml-auto h-6 w-6 text-inherit text-black hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+        className="ml-auto h-6 w-6 text-inherit text-black hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden toggle_icon"
         ripple={false}
         onClick={toggleMobileNav}
       >
@@ -79,7 +100,6 @@ const Navbar = () => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
-            className="h-6 w-6"
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
@@ -93,7 +113,6 @@ const Navbar = () => {
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
@@ -119,7 +138,7 @@ const Navbar = () => {
                 <NavLink
                   to={link.path}
                   className={`text-blue-700 hover:text-blue-900 flex items-center ${
-                    link.path === activeLink ? 'bg-blue-400' : ''
+                    link.path === activeLink ? 'active' : ''
                   }`}
                   onClick={() => handleNavLinkClick(link.path)}
                 >

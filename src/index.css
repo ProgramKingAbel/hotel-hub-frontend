@@ -1,3 +1,72 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Move the navigation controls to the top-right corner */
+
+.owl-carousel .owl-item img {
+  width: 60% !important;
+  border-radius: 535px;
+  height: 150px !important;
+}
+
+.owl-prev {
+  position: absolute;
+  top: 17%;
+  left: -5%;
+  color: #fff !important;
+  width: 70px;
+  border-radius: 0 30px 30px 0 !important;
+  background-color: #98bf10 !important;
+  padding: 5px;
+}
+
+.owl-next {
+  position: absolute !important;
+  top: 17%;
+  right: -3.5%;
+  color: #fff !important;
+  width: 70px;
+  border-radius: 30px 0 0 30px !important;
+  background-color: #98bf10 !important;
+  padding: 5px;
+}
+
+.disabled {
+  background-color: rgba(192, 192, 192, 0.658) !important;
+}
+
+.owl-prev span {
+  font-size: 30px !important;
+}
+
+.owl-next span {
+  font-size: 30px !important;
+}
+
+/* Style the navigation controls on hover */
+.owl-prev:hover,
+.owl-next:hover {
+  background-color: #555;
+}
+
+.room_container {
+  margin-right: 0 !important;
+  padding: 0 25px 0 25px;
+}
+
+.line {
+  border: 1px dashed rgba(192, 192, 192, 0.658);
+}
+
+.font-black {
+  color: #000 !important;
+}
+
+@media (max-width: 760px) {
+  .owl-carousel .owl-item img {
+    width: 60% !important;
+    height: 230px !important;
+    border-radius: 535px;
+  }
+}

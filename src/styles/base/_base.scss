@@ -9,4 +9,42 @@
 body {
   box-sizing: border-box;
   color: $color-white;
+
+  .navbar {
+    width: 100%;
+
+    .nav_brand {
+      width: 100%;
+      display: flex;
+      align-items: center !important;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .rounded-lg {
+      border-radius: 0 !important;
+
+      &:hover {
+        background: none !important;
+      }
+    }
+
+    .bg-blue-500 {
+      color: $color-white !important;
+      background-color: $primary-color !important;
+      width: 100%;
+      padding: inherit !important;
+    }
+  }
+
+  .toggle_icon {
+    color: $primary-color;
+    cursor: pointer;
+    margin: 5px;
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
 }
