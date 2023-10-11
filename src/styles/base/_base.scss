@@ -25,10 +25,10 @@ body {
       border-radius: 0 !important;
 
       &:hover {
-        background-color: $primary-color !important;
         background: none !important;
       }
     }
+
     .bg-blue-500 {
       color: $color-white !important;
       background-color: $primary-color !important;
