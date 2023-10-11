@@ -16,10 +16,30 @@ import {
 } from '@heroicons/react/24/solid';
 
 const links = [
-  { path: '/app', text: 'Rooms', icon: HomeIcon },
-  { path: '/app/Reservations', text: 'Reserve a Room', icon: ShoppingBagIcon },
-  { path: '/app/Profile', text: 'My Reservations', icon: UserCircleIcon },
-  { path: '/', text: 'Sign Out', icon: PowerIcon },
+  {
+    path: '/app',
+    text: 'Rooms',
+    icon: HomeIcon,
+    exact: true,
+  },
+  {
+    path: '/app/Reservations',
+    text: 'Reserve a Room',
+    icon: ShoppingBagIcon,
+    exact: false,
+  },
+  {
+    path: '/app/Profile',
+    text: 'My Reservations',
+    icon: UserCircleIcon,
+    exact: false,
+  },
+  {
+    path: '/',
+    text: 'Sign Out',
+    icon: PowerIcon,
+    exact: false,
+  },
 ];
 
 const Navbar = () => {
@@ -50,10 +70,11 @@ const Navbar = () => {
             <ListItem key={link.text} className="mb-2 ml-4 list">
               {pathname !== '/' ? (
                 <NavLink
+                  exact={link.exact}
                   to={link.path}
-                  className={`flex items-center p-2 rounded-none${
-                    link.path === activeLink
-                  }`}
+                  className={`flex items-center p-2 text-lg rounded-none  ${
+                    link.path === activeLink ? 'bg-blue-500' : ''
+                  }`} // Apply the conditional class here
                   onClick={() => handleNavLinkClick(link.path)}
                 >
                   {React.createElement(link.icon, {

@@ -18,8 +18,14 @@ body {
 
       &:hover {
         background-color: $primary-color !important;
-        color: $color-white !important;
+        background: none !important;
       }
+    }
+    .bg-blue-500 {
+      color: $color-white !important;
+      background-color: $primary-color !important;
+      width: 100%;
+      padding: inherit !important;
     }
   }
 }
