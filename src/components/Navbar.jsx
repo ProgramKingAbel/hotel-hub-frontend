@@ -5,7 +5,6 @@ import {
   List,
   ListItem,
   Card,
-  MobileNav,
   IconButton,
 } from '@material-tailwind/react';
 import {
@@ -13,7 +12,12 @@ import {
   ShoppingBagIcon,
   UserCircleIcon,
   PowerIcon,
+  PlusIcon,
+  TrashIcon,
+
 } from '@heroicons/react/24/solid';
+// import AddRoom from './AddRoom';
+// import DeleteRoom from './DeleteRoom';
 
 const links = [
   {
@@ -35,7 +39,19 @@ const links = [
     exact: false,
   },
   {
-    path: '/',
+    path: '#',
+    text: 'Add Room',
+    icon: PlusIcon,
+    exact: false,
+  },
+  {
+    path: '#',
+    text: 'Delete Room',
+    icon: TrashIcon,
+    exact: false,
+  },
+  {
+    path: '/', // Change the path to the actual path for signing out
     text: 'Sign Out',
     icon: PowerIcon,
     exact: false,
@@ -45,54 +61,20 @@ const links = [
 const Navbar = () => {
   const { pathname } = useLocation();
   const [openMobileNav, setOpenMobileNav] = useState(false);
-  const [activeLink, setActiveLink] = useState(pathname);
 
-  const handleNavLinkClick = (path) => {
-    setActiveLink(path);
-    setOpenMobileNav(false);
+  const handleNavLinkClick = () => {
+    setOpenMobileNav(true);
   };
 
   const toggleMobileNav = () => {
-    setOpenMobileNav(!openMobileNav);
+    setOpenMobileNav((prevState) => !prevState);
   };
 
   return (
     <>
-      <Card className="h-[calc(100vh)] w-full p-2 gap-5 hidden md:flex rounded-none navbar">
-        <h2 className="mt-3 ml-4 nav_brand">
-          <Typography variant="h3" color="black" className="font-semibold mb-4">
-            Hotel Hub
-          </Typography>
-        </h2>
-
-        <List>
-          {links.map((link) => (
-            <ListItem key={link.text} className="mb-2 ml-4 list">
-              {pathname !== '/' ? (
-                <NavLink
-                  exact={link.exact}
-                  to={link.path}
-                  className={`flex items-center p-2 text-lg rounded-none  ${
-                    link.path === activeLink ? 'bg-blue-500' : ''
-                  }`} // Apply the conditional class here
-                  onClick={() => handleNavLinkClick(link.path)}
-                >
-                  {React.createElement(link.icon, {
-                    className: 'h-5 w-5 mr-2',
-                  })}
-                  {link.text}
-                </NavLink>
-              ) : (
-                <span className="text-blue-700">{link.text}</span>
-              )}
-            </ListItem>
-          ))}
-        </List>
-      </Card>
-
       <IconButton
         variant="text"
-        className="ml-auto h-6 w-6 text-inherit text-black hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden toggle_icon"
+        className="ml-auto h-6 w-6  text-inherit text-black hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden toggle_icon"
         ripple={false}
         onClick={toggleMobileNav}
       >
@@ -125,20 +107,22 @@ const Navbar = () => {
           </svg>
         )}
       </IconButton>
+      <Card className={`h-screen  w-full p-2 gap-5 bg-gray-300 md:flex rounded-none navbar ${openMobileNav ? 'flex' : 'hidden'}`}>
+        <h2 className="mt-3 ml-4 nav_brand">
+          <Typography variant="h3" color="black" className="font-semibold mb-4">
+            Hotel Hub
+          </Typography>
+        </h2>
 
-      <MobileNav
-        open={openMobileNav}
-        onClose={() => setOpenMobileNav(false)}
-        className="xl:hidden h-[calc(100vh)] w-full p-4 bg-gray-300 gap-8 md:flex rounded-none "
-      >
         <List>
           {links.map((link) => (
-            <ListItem key={link.text} className="">
+            <ListItem key={link.text} className="mb-2 ml-4 list">
               {pathname !== '/' ? (
                 <NavLink
+                  exact={link.exact}
                   to={link.path}
-                  className={`text-blue-700 hover:text-blue-900 flex items-center ${
-                    link.path === activeLink ? 'active' : ''
+                  className={`flex items-center p-2 text-lg rounded-none  ${
+                    link.path === pathname ? 'bg-blue-500' : ''
                   }`}
                   onClick={() => handleNavLinkClick(link.path)}
                 >
@@ -148,12 +132,12 @@ const Navbar = () => {
                   {link.text}
                 </NavLink>
               ) : (
-                <span className="text-blue-700 ">{link.text}</span>
+                <span className="text-blue-700">{link.text}</span>
               )}
             </ListItem>
           ))}
         </List>
-      </MobileNav>
+      </Card>
     </>
   );
 };
