@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { ReservationForm } from '../components';
 
-const Reservations = () => {
-  return (
-    <div>Reservations</div>
-  )
-}
+const Reservations = () => (
+  <div>
+    <ReservationForm />
+  </div>
+);
 
-export default Reservations
+export default Reservations;

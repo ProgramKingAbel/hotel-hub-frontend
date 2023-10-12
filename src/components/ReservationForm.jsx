@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ReservationForm = () => {
+function ReservationForm() {
   return (
     <div>ReservationForm</div>
   )
