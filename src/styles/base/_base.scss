@@ -54,3 +54,13 @@ body {
   border-radius: 10px;
   color: black;
 }
+
+.reserve_btn {
+  background-color: $primary-color;
+  color: $color-white !important;
+  border-color: $primary-color !important;
+
+  .icon {
+    color: $color-white !important;
+  }
+}
