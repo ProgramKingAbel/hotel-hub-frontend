@@ -51,7 +51,7 @@ const links = [
     exact: false,
   },
   {
-    path: '/', // Change the path to the actual path for signing out
+    path: '/register',
     text: 'Sign Out',
     icon: PowerIcon,
     exact: false,
