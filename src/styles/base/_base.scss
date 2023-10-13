@@ -8,7 +8,7 @@
 
 body {
   box-sizing: border-box;
-  color: $color-white;
+  // color: $color-white;
 
   .navbar {
     width: 100%;
@@ -46,5 +46,20 @@ body {
       width: 30px;
       height: 30px;
     }
+  }
+}
+
+.text_container {
+  background-color: #fff;
+  color: black;
+}
+
+.reserve_btn {
+  background-color: $primary-color;
+  color: $color-white !important;
+  border-color: $primary-color !important;
+
+  .icon {
+    color: $color-white !important;
   }
 }

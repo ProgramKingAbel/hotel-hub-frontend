@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import '../styles/components/navbar.scss';
 import {
   Typography,
   List,
@@ -92,7 +93,7 @@ const Navbar = () => {
 
       <IconButton
         variant="text"
-        className="ml-auto h-6 w-6 text-inherit text-black hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden toggle_icon"
+        className="ml-auto h-6 w-6 text-inherit text-black hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden toggle_icon absolute top-4 right-4"
         ripple={false}
         onClick={toggleMobileNav}
       >
@@ -129,7 +130,11 @@ const Navbar = () => {
       <MobileNav
         open={openMobileNav}
         onClose={() => setOpenMobileNav(false)}
-        className="xl:hidden h-[calc(100vh)] w-full p-4 bg-gray-300 gap-8 md:flex rounded-none "
+        className="xl:hidden h-[calc(100vh)] w-full p-4 bg-gray-300 gap-8 md:flex rounded-none absolute top-0 left-0"
+        style={{
+          backgroundColor: 'rgba(100, 100, 100, 0.9)', // Adjust the opacity here (0.9 for 90% opacity)
+          zIndex: 1000, // Adjust the z-index to be above other page content
+        }}
       >
         <List>
           {links.map((link) => (
