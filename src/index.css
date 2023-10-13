@@ -62,10 +62,13 @@
 .font-black {
   color: #000 !important;
 }
+.owl-carousel .owl-item img {
+    width: 70% !important;
+  }
 
 @media (max-width: 760px) {
   .owl-carousel .owl-item img {
-    width: 60% !important;
+    width: 100% !important;
     height: 230px !important;
     border-radius: 535px;
   }

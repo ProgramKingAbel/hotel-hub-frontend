@@ -29,7 +29,7 @@ export default function RoomCard({
         <img
           src={image && image}
           alt="ui/ux review check"
-          className="object-cover object-center"
+          className="w-full h-auto object-cover object-center sm:w-100 sm:h-200"
         />
       </CardHeader>
       <CardBody>
