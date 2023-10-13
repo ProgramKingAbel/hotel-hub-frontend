@@ -25,3 +25,8 @@ export const createReservation = createAsyncThunk('reservations/createReservatio
   return response.data;
 });
 
+export const deleteReservation = createAsyncThunk('reservations/deleteReservation', async (reservationId) => {
+  await axios.delete(`${BASE_URL}/${reservationId}`, { headers: customHeader });
+  return reservationId;
+});
+
