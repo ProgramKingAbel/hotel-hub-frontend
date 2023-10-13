@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Layout } from './components';
+import { Layout, AddRoom, DeleteRoom } from './components';
 import {
   Rooms, RoomItem, Reservations, Profile, Splash, Register,
 } from './Pages';
@@ -14,6 +14,8 @@ const App = () => (
       <Route path="room/:roomId" element={<RoomItem />} />
       <Route path="Reservations" element={<Reservations />} />
       <Route path="Profile" element={<Profile />} />
+      <Route path="AddRoom" element={<AddRoom />} />
+      <Route path="DeleteRoom" element={<DeleteRoom />} />
     </Route>
   </Routes>
 );

@@ -39,13 +39,13 @@ const links = [
     exact: false,
   },
   {
-    path: '#',
+    path: '/app/AddRoom',
     text: 'Add Room',
     icon: PlusIcon,
     exact: false,
   },
   {
-    path: '#',
+    path: '/app/DeleteRoom',
     text: 'Delete Room',
     icon: TrashIcon,
     exact: false,
@@ -107,7 +107,7 @@ const Navbar = () => {
           </svg>
         )}
       </IconButton>
-      <Card className={`h-screen  w-full p-2 gap-5 bg-gray-300 md:flex rounded-none navbar ${openMobileNav ? 'flex' : 'hidden'}`}>
+      <Card className={`h-screen  w-full p-2 gap-5 bg-gray-300 md:flex rounded-none navbar ${openMobileNav ? 'block' : 'hidden'}`}>
         <h2 className="mt-3 ml-4 nav_brand">
           <Typography variant="h3" color="black" className="font-semibold mb-4">
             Hotel Hub

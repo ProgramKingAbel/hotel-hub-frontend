@@ -33,7 +33,7 @@ export default function RoomCard({
         />
       </CardHeader>
       <CardBody>
-        <div className="mb-3 flex items-center justify-center mb-6">
+        <div className="flex items-center justify-center mb-6">
           <Typography variant="h5" color="blue-gray" className="font-medium">
             {name}
           </Typography>

@@ -9,6 +9,7 @@ import RoomCard from '../components/RoomCard/Room_card';
 const Rooms = () => {
   const dispatch = useDispatch();
   const rooms = useSelector((state) => state.room.rooms);
+  console.log(rooms);
   const isLoading = useSelector((state) => state.room.isLoading);
   const error = useSelector((state) => state.room.error);
 
