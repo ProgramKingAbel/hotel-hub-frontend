@@ -19,7 +19,7 @@ const Rooms = () => {
       dispatch(fetchRooms());
       setIsTokenAvailable(true);
     }
-  }, [dispatch]);
+  }, [dispatch, token, isTokenAvailable]);
 
   if (isLoading || !token) {
     return <div>Loading...</div>;

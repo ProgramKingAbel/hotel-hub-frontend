@@ -74,6 +74,7 @@ const RoomItem = () => {
           variant="outlined"
           className="flex items-center gap-3 rounded-full reserve_btn"
           size="lg"
+          onClick={() => handleReserveClick}
         >
           <div>
             <svg
@@ -98,10 +99,6 @@ const RoomItem = () => {
           </svg>
         </Button>
       </div>
-<<<<<<< HEAD
-      <button type="button" onClick={handleReserveClick}>Reserve this room</button>
-=======
->>>>>>> dev
     </div>
   );
 };
