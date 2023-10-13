@@ -9,10 +9,8 @@ const Profile = () => {
   useEffect(() => {
     dispatch(fetchReservations());
   }, [dispatch]);
-
-  // Function to handle reservation deletion
-  const handleDeleteReservation = (reservationId) => {
-    // Dispatch the deleteReservation action with the reservation ID
+   
+  const handleDeleteReservation = (reservationId) => {   
     dispatch(deleteReservation(reservationId));
   };
 
@@ -29,4 +27,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
