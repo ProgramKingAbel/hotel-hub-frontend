@@ -5,7 +5,7 @@
 /* Move the navigation controls to the top-right corner */
 
 .owl-carousel .owl-item img {
-  width: 60% !important;
+  width: 70% !important;
   border-radius: 535px;
   height: 150px !important;
 }
@@ -62,9 +62,6 @@
 .font-black {
   color: #000 !important;
 }
-.owl-carousel .owl-item img {
-    width: 70% !important;
-  }
 
 @media (max-width: 760px) {
   .owl-carousel .owl-item img {
