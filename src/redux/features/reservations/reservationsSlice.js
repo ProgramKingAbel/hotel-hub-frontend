@@ -42,4 +42,18 @@ const reservationsSlice = createSlice({
       state.isLoading = false;
     });
 
-    
+    builder.addCase(createReservation.fulfilled, (state, action) => {
+      state.message = action.payload;
+      state.error = '';
+      state.isLoading = false;
+    });
+
+    builder.addCase(deleteReservation.fulfilled, (state, action) => {
+      state.reservations = state.reservations.filter(
+        (reservation) => reservation.id !== action.payload,
+      );
+    });
+  },
+});
+
+export default reservationsSlice.reducer;
