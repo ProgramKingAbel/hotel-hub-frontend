@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { fetchRooms } from '../redux/features/rooms/roomsSlice';
+import { createReservation } from '../redux/features/reservations/reservationsSlice';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const ReservationForm = () => {
-  const { roomId } = useParams();
-  console.log(roomId);
   const dispatch = useDispatch();
   const rooms = useSelector((state) => state.room.rooms);
-  console.log(rooms);
   const [formData, setFormData] = useState({
     username: '',
     room: '',
@@ -41,7 +38,7 @@ const ReservationForm = () => {
       check_out: checkOutISO,
       room_id: formData.room,
     };
-    console.log(requestData);
+    dispatch(createReservation(requestData));
   };
 
   return (

@@ -3,8 +3,6 @@ import axiosInstance from '../../../utils/axios';
 
 // http://127.0.0.1:3000/api/v1/rooms
 
-const BASE_URL = `${process.env.REACT_APP_HOST_URL}rooms`;
-
 const initialState = {
   isLoading: false,
   rooms: [],
