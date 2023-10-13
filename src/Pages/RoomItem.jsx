@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Typography, Button } from '@material-tailwind/react';
 import { fetchRoomDetailsById } from '../redux/features/rooms/roomsSlice';
@@ -8,6 +8,7 @@ import Table from '../components/Table/Table';
 const RoomItem = () => {
   const { roomId } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Initialize the navigate function
   const roomDetails = useSelector((state) => state.room.roomDetails);
 
   const TABLE_HEAD = ['Available Free packages'];
@@ -30,6 +31,11 @@ const RoomItem = () => {
   useEffect(() => {
     dispatch(fetchRoomDetailsById(roomId));
   }, [dispatch, roomId]);
+
+  const handleReserveClick = () => {
+    // Navigate to the "Reserve" page with the roomId parameter
+    navigate('./reserve');
+  };
 
   return (
     <div className="md:container w-full room_container pt-40 relative">
@@ -68,6 +74,7 @@ const RoomItem = () => {
           variant="outlined"
           className="flex items-center gap-3 rounded-full reserve_btn"
           size="lg"
+          onClick={() => handleReserveClick}
         >
           <div>
             <svg

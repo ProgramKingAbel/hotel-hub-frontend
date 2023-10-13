@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axiosInstance from '../../../utils/axios';
 
 // http://127.0.0.1:3000/api/v1/rooms
-
-const BASE_URL = `${process.env.REACT_APP_HOST_URL}rooms`;
 
 const initialState = {
   isLoading: false,
@@ -12,9 +10,9 @@ const initialState = {
   roomDetails: {},
 };
 
-export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async () => axios.get(BASE_URL).then((response) => response.data));
+export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async () => axiosInstance.get('rooms').then((response) => response.data));
 export const fetchRoomDetailsById = createAsyncThunk('rooms/fetchRoomDetailsById', async (roomId) => {
-  const response = await axios.get(`${BASE_URL}/${roomId}`);
+  const response = await axiosInstance.get(`rooms/${roomId}`);
   return response.data;
 });
 
@@ -24,6 +22,7 @@ const roomSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchRooms.fulfilled, (state, action) => {
       state.rooms = action.payload;
+      console.log(action.payload);
       state.error = '';
       state.isLoading = false;
     });
