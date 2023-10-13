@@ -47,7 +47,7 @@ const RoomItem = () => {
         <div className="flex-1 lg:flex-grow text_container sm:w-1/5 md:w-full lg:w-full ">
           <Typography
             variant="h3"
-            className="sm:text-left lg:text-right sm:mt-6"
+            className="sm:text-left lg:text-right sm:mt-6 lg:mt-0"
           >
             {roomDetails && roomDetails.name}
           </Typography>
@@ -63,7 +63,7 @@ const RoomItem = () => {
         </div>
       </div>
 
-      <div className="absolute  right-20 lg:right-20 bottom-80 lg:bottom-20">
+      <div className="absolute  right-30 lg:right-10 bottom-80 lg:bottom-20">
         <Button
           variant="outlined"
           className="flex items-center gap-3 rounded-full reserve_btn"
