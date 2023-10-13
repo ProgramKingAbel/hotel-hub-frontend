@@ -9,8 +9,8 @@ const Profile = () => {
   useEffect(() => {
     dispatch(fetchReservations());
   }, [dispatch]);
-   
-  const handleDeleteReservation = (reservationId) => {   
+
+  const handleDeleteReservation = (reservationId) => {
     dispatch(deleteReservation(reservationId));
   };
 
