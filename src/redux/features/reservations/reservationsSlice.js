@@ -9,9 +9,7 @@ const customHeader = {
 const initialState = {
   isLoading: false,
   reservations: [],
-  error: '',
-  reservationDetails: {},
-  rooms: [],
+  error: ''
 };
 
 export const fetchReservations = createAsyncThunk('reservations/fetchReservations', async () => {
@@ -19,14 +17,16 @@ export const fetchReservations = createAsyncThunk('reservations/fetchReservation
   return response.data;
 });
 
-export const fetchRooms = createAsyncThunk('reservations/fetchRooms', async () => {
-  const response = await axios.get(`${BASE_URL}/rooms`);
-  return response.data;
+const reservationData = JSON.stringify({
+  check_in: "",
+  check_out: "",
+  room_id: 4
 });
 
 // Add a new async thunk for creating reservations
 export const createReservation = createAsyncThunk('reservations/createReservation', async (reservationData) => {
-  const response = await axios.post(`${BASE_URL}/create`, reservationData);
+  const response = await axios.post(`${BASE_URL}api/v1/reservations`, reservationData);
+  console.log(response.data)
   return response.data;
 });
 

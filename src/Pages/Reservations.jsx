@@ -35,14 +35,14 @@ const Reservation = () => {
 
       <div className="reservation-form">
 
-        <label htmlFor="name">Name:</label>
+        <label for="name">Name:</label>
         <input
           type="text"
           id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <label htmlFor="date">Date:</label>
+        <label for="date">Date:</label>
 
         <input
           type="date"
@@ -51,7 +51,7 @@ const Reservation = () => {
           onChange={(e) => setDate(e.target.value)}
         />
 
-        <label htmlFor="room">Select a Room:</label>
+        <label for="room">Select a Room:</label>
         <select
           id="room"
           value={selectedRoomId}
