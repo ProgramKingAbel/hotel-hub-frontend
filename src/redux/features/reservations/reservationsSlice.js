@@ -1,10 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-const BASE_URL = `${process.env.REACT_APP_HOST_URL}reservations`;
-const customHeader = {
-  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1NTEzYjAwZi02NzE5LTQwNzEtYTNiZi03YzY0YTc4OTFkODkiLCJzdWIiOiIzIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjk3MTg4ODg2LCJleHAiOjE2OTcxOTYwODZ9.-Wi00IxwK4rU-jIJxQpjFFv8BguzysdNu-0lS_qexWc',
-};
+import axiosInstance from '../../../utils/axios';
 
 const initialState = {
   isLoading: false,
@@ -14,20 +9,21 @@ const initialState = {
 };
 
 export const fetchReservations = createAsyncThunk('reservations/fetchReservations', async () => {
-  const response = await axios.get(BASE_URL, { headers: customHeader });
+  const response = await axiosInstance.get('reservations');
   console.log(response.data);
   return response.data;
 });
 
 // Add a new async thunk for creating reservations
 export const createReservation = createAsyncThunk('reservations/createReservation', async (reservationData) => {
-  const response = await axios.post(BASE_URL, { headers: customHeader }, reservationData);
+  const response = await axiosInstance.post('reservations', reservationData);
+  console.log(response.data);
   return response.data;
 });
 
 export const deleteReservation = createAsyncThunk('reservations/deleteReservation', async (reservationId) => {
-  await axios.delete(`${BASE_URL}/${reservationId}`, { headers: customHeader });
-  return reservationId;
+  await axiosInstance.delete(`reservations/${reservationId}`);
+  return response.data;
 });
 
 const reservationsSlice = createSlice({
