@@ -17,16 +17,10 @@ export const fetchReservations = createAsyncThunk('reservations/fetchReservation
   return response.data;
 });
 
-const reservationData = {
-  check_in: "",
-  check_out: "",
-  room_id: 4
-};
-
 // Add a new async thunk for creating reservations
-export const createReservation = createAsyncThunk('reservations/createReservation', async (reservationData) => {
+export const createReservation = createAsyncThunk('reservations/createReservation', async () => {
   const response = await axios.post(`${BASE_URL}api/v1/reservations`, { headers: customHeader });
-  console.log(response.data)
+  console.log(response.data);
   return response.data;
 });
 

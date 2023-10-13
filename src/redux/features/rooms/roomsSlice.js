@@ -1,12 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import axiosInstance from '../../../utils/axios';
 
 // http://127.0.0.1:3000/api/v1/rooms
 
 const BASE_URL = `${process.env.REACT_APP_HOST_URL}rooms`;
-const customHeader = {
-  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkZDA4ODkyMC04MmEzLTRkN2ItOTRlZS1mMDllZDAyNGMwNjAiLCJzdWIiOiIxMiIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY5NzExMTgyMywiZXhwIjoxNjk3MTE5MDIzfQ.19_k5xlLhIZ2gjUeRg8F6QuMNwWBaz18LIEx7Jfxx0M',
-};
 
 const initialState = {
   isLoading: false,
@@ -15,11 +13,9 @@ const initialState = {
   roomDetails: {},
 };
 
-export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async () => axios.get(BASE_URL, {
-  headers: customHeader,
-}).then((response) => response.data));
+export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async () => axiosInstance.get('rooms').then((response) => response.data));
 export const fetchRoomDetailsById = createAsyncThunk('rooms/fetchRoomDetailsById', async (roomId) => {
-  const response = await axios.get(`${BASE_URL}/${roomId}`);
+  const response = await axiosInstance.get(`${BASE_URL}/${roomId}`);
   return response.data;
 });
 

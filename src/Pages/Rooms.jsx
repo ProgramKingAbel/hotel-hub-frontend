@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import OwlCarousel from 'react-owl-carousel';
 import { fetchRooms } from '../redux/features/rooms/roomsSlice';
@@ -11,12 +11,17 @@ const Rooms = () => {
   const rooms = useSelector((state) => state.room.rooms);
   const isLoading = useSelector((state) => state.room.isLoading);
   const error = useSelector((state) => state.room.error);
+  const token = localStorage.getItem('authToken');
+  const [isTokenAvailable, setIsTokenAvailable] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchRooms());
+    if (token && !isTokenAvailable) {
+      dispatch(fetchRooms());
+      setIsTokenAvailable(true);
+    }
   }, [dispatch]);
 
-  if (isLoading) {
+  if (isLoading || !token) {
     return <div>Loading...</div>;
   }
 
