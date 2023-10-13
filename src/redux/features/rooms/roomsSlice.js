@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const BASE_URL = `${process.env.REACT_APP_HOST_URL}rooms`;
 const customHeader = {
-  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI3OTA2YzM3YS1lZjdmLTQ5YjYtOGM5Mi0yZmE5MzA3OGYzNWUiLCJzdWIiOiI0Iiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjk3MDIzNDY3LCJleHAiOjE2OTcwMzA2Njd9.6OnHLVWixkIgS_zoUVcBroETRlhBb82N1l5rpjTFV6E',
+  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkZDA4ODkyMC04MmEzLTRkN2ItOTRlZS1mMDllZDAyNGMwNjAiLCJzdWIiOiIxMiIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY5NzExMTgyMywiZXhwIjoxNjk3MTE5MDIzfQ.19_k5xlLhIZ2gjUeRg8F6QuMNwWBaz18LIEx7Jfxx0M',
 };
 
 const initialState = {
@@ -29,6 +29,7 @@ const roomSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchRooms.fulfilled, (state, action) => {
       state.rooms = action.payload;
+      console.log(action.payload);
       state.error = '';
       state.isLoading = false;
     });
