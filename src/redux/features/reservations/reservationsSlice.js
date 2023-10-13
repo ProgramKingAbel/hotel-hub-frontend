@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const BASE_URL = `${process.env.REACT_APP_HOST_URL}reservations`;
 const customHeader = {
-  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkZDA4ODkyMC04MmEzLTRkN2ItOTRlZS1mMDllZDAyNGMwNjAiLCJzdWIiOiIxMiIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY5NzEwNjM5MiwiZXhwIjoxNjk3MTEzNTkyfQ.ghCMmtVDekyCujsW7BVxv7RkvObADVCF9tvAxGxBrl4',
+  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1NTEzYjAwZi02NzE5LTQwNzEtYTNiZi03YzY0YTc4OTFkODkiLCJzdWIiOiIzIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjk3MTg1MTk5LCJleHAiOjE2OTcxOTIzOTl9.Y6pgVozQ21Nl12AJzycqL55ixh9aKdCnRbs06khA-5c',
 };
 
 const initialState = {
@@ -14,6 +14,19 @@ const initialState = {
 
 export const fetchReservations = createAsyncThunk('reservations/fetchReservations', async () => {
   const response = await axios.get(BASE_URL, { headers: customHeader });
+  return response.data;
+});
+
+const reservationData = {
+  check_in: "",
+  check_out: "",
+  room_id: 4
+};
+
+// Add a new async thunk for creating reservations
+export const createReservation = createAsyncThunk('reservations/createReservation', async (reservationData) => {
+  const response = await axios.post(`${BASE_URL}api/v1/reservations`, { headers: customHeader });
+  console.log(response.data)
   return response.data;
 });
 
