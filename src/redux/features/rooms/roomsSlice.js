@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const BASE_URL = `${process.env.REACT_APP_HOST_URL}rooms`;
 const customHeader = {
-  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJkZDA4ODkyMC04MmEzLTRkN2ItOTRlZS1mMDllZDAyNGMwNjAiLCJzdWIiOiIxMiIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTY5NzExMTgyMywiZXhwIjoxNjk3MTE5MDIzfQ.19_k5xlLhIZ2gjUeRg8F6QuMNwWBaz18LIEx7Jfxx0M',
+  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1NTEzYjAwZi02NzE5LTQwNzEtYTNiZi03YzY0YTc4OTFkODkiLCJzdWIiOiIzIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjk3MTg4ODg2LCJleHAiOjE2OTcxOTYwODZ9.-Wi00IxwK4rU-jIJxQpjFFv8BguzysdNu-0lS_qexWc',
 };
 
 const initialState = {
