@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import axiosInstance from '../../../utils/axios';
 
 // http://127.0.0.1:3000/api/v1/rooms
@@ -15,7 +14,7 @@ const initialState = {
 
 export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async () => axiosInstance.get('rooms').then((response) => response.data));
 export const fetchRoomDetailsById = createAsyncThunk('rooms/fetchRoomDetailsById', async (roomId) => {
-  const response = await axiosInstance.get(`${BASE_URL}/${roomId}`);
+  const response = await axiosInstance.get(`rooms/${roomId}`);
   return response.data;
 });
 
