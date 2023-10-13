@@ -16,11 +16,11 @@ const Splash = () => (
         breathtaking destinations. Your journey begins here.
       </p>
       <div className="splash_intro-btns">
-        <a href="htm" className="btn btn-animated-left">
+        <a href="/register" className="btn btn-animated-left">
           <img src="images/hand-pointing.svg" alt="sign up" />
           <span>Sign up</span>
         </a>
-        <a href="htm" className="btn btn-animated-right">
+        <a href="/login" className="btn btn-animated-right">
           <img src="images/sign-in.svg" alt="sign up" />
           <span>Login</span>
         </a>
