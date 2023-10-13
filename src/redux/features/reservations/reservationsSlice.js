@@ -19,3 +19,9 @@ export const fetchReservations = createAsyncThunk('reservations/fetchReservation
   return response.data;
 });
 
+// Add a new async thunk for creating reservations
+export const createReservation = createAsyncThunk('reservations/createReservation', async (reservationData) => {
+  const response = await axios.post(BASE_URL, { headers: customHeader }, reservationData);
+  return response.data;
+});
+
