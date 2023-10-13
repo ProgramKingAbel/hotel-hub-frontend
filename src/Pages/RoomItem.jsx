@@ -32,9 +32,9 @@ const RoomItem = () => {
   }, [dispatch, roomId]);
 
   return (
-    <div className="container mx-auto max-w-screen-xl lg:pl-40 w-full room_container mt-20 bg-slate-900 relative">
+    <div className="md:container w-full room_container pt-40 relative">
       <div
-        className="container flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between texts-center lg:gap-20 w-full"
+        className="container flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between texts-center lg:gap-20 gap-10 w-full h-screen  pt-20"
         key={roomDetails.name}
       >
         <div className="flex-9 lg:flex-grow-9 image_container">
@@ -43,16 +43,16 @@ const RoomItem = () => {
             alt={roomDetails.name}
             className="h-96 w-full object-cover object-center sm:w-400 sm:h-800"
           />
-          <div className="mt-6">
-            <Button>More Image</Button>
-          </div>
         </div>
-        <div className="flex-1 lg:flex-grow text_container sm:w-1/5 lg:w-full ">
-          <Typography variant="h3" className="text-right">
+        <div className="flex-1 lg:flex-grow text_container sm:w-1/5 md:w-full lg:w-full ">
+          <Typography
+            variant="h3"
+            className="sm:text-left lg:text-right sm:mt-6"
+          >
             {roomDetails && roomDetails.name}
           </Typography>
           <p className="desc">
-            -$
+            $
             {roomDetails && roomDetails.price}
             {' '}
             {roomDetails && roomDetails.description}
@@ -63,7 +63,7 @@ const RoomItem = () => {
         </div>
       </div>
 
-      <div className="absolute right-20">
+      <div className="absolute  right-20 lg:right-20 bottom-80 lg:bottom-20">
         <Button
           variant="outlined"
           className="flex items-center gap-3 rounded-full reserve_btn"

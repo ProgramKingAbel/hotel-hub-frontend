@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import '../styles/components/navbar.scss';
 import {
   Typography,
   List,
