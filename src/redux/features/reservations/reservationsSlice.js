@@ -25,11 +25,15 @@ export const createReservation = createAsyncThunk('reservations/createReservatio
   return response.data;
 });
 
+export const deleteReservation = createAsyncThunk('reservations/deleteReservation', async (reservationId) => {
+  await axios.delete(`${BASE_URL}/${reservationId}`, { headers: customHeader });
+  return reservationId;
+});
+
 const reservationsSlice = createSlice({
   name: 'reservation',
   initialState,
   reducers: {
-    // Add any other reducers you need
   },
   extraReducers: (builder) => {
     builder.addCase(fetchReservations.fulfilled, (state, action) => {
@@ -42,6 +46,12 @@ const reservationsSlice = createSlice({
       state.message = action.payload;
       state.error = '';
       state.isLoading = false;
+    });
+
+    builder.addCase(deleteReservation.fulfilled, (state, action) => {
+      state.reservations = state.reservations.filter(
+        (reservation) => reservation.id !== action.payload,
+      );
     });
   },
 });
