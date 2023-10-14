@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { fetchRooms } from '../redux/features/rooms/roomsSlice';
 import { createReservation } from '../redux/features/reservations/reservationsSlice';
@@ -8,9 +9,14 @@ import 'react-datepicker/dist/react-datepicker.css';
 const ReservationForm = () => {
   const dispatch = useDispatch();
   const rooms = useSelector((state) => state.room.rooms);
+  const currentUser = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
+  console.log(currentUser.name);
+  const { roomId } = useParams();
+  console.log(roomId);
   const [formData, setFormData] = useState({
-    username: '',
-    room: '',
+    username: currentUser.name,
+    room: roomId || '',
     check_in: new Date(),
     check_out: new Date(),
   });
@@ -28,7 +34,9 @@ const ReservationForm = () => {
     setFormData({ ...formData, [field]: date });
   };
 
-  const handleSubmit = (e) => {
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const checkInISO = formData.check_in.toISOString();
     const checkOutISO = formData.check_out.toISOString();
@@ -38,53 +46,64 @@ const ReservationForm = () => {
       check_out: checkOutISO,
       room_id: formData.room,
     };
-    dispatch(createReservation(requestData));
+    try {
+      await dispatch(createReservation(requestData));
+      navigate('/app/Profile');
+    } catch (error) {
+      console.error('Error adding room:', error);
+      setError('An error occurred. Please try again.');
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={formData.username}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div>
-        <label>Room:</label>
-        <select
-          name="room"
-          value={formData.room}
-          onChange={handleInputChange}
-        >
-          <option value="">Select a room</option>
-          {rooms.map((room) => (
-            <option key={room.id} value={room.id}>
-              {room.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label>Check-In Date:</label>
-        <DatePicker
-          selected={formData.check_in}
-          name="checkIn"
-          onChange={(date) => handleDateChange(date, 'checkIn')}
-        />
-      </div>
-      <div>
-        <label>Check-Out Date:</label>
-        <DatePicker
-          selected={formData.check_out}
-          name="checkOut"
-          onChange={(date) => handleDateChange(date, 'checkOut')}
-        />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      {error && <p className="error-message">{error}</p>}
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Username:</label>
+          <input
+            type="text"
+            name="username"
+            value={formData.username}
+            onChange={handleInputChange}
+            disabled
+          />
+        </div>
+        <div>
+          <label>Room:</label>
+          <select
+            name="room"
+            value={formData.room}
+            onChange={handleInputChange}
+            disabled={!!roomId}
+          >
+            <option value="">Select a room</option>
+            {rooms.map((room) => (
+              <option key={room.id} value={room.id}>
+                {room.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label>Check-In Date:</label>
+          <DatePicker
+            selected={formData.check_in}
+            name="check_in"
+            onChange={(date) => handleDateChange(date, 'check_in')}
+          />
+        </div>
+        <div>
+          <label>Check-Out Date:</label>
+          <DatePicker
+            selected={formData.check_out}
+            name="check_out"
+            onChange={(date) => handleDateChange(date, 'check_out')}
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 };
 

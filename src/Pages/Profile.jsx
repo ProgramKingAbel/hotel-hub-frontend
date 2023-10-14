@@ -8,10 +8,14 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(fetchReservations());
-  }, [dispatch]);
+  }, [dispatch, reservations]);
 
-  const handleDeleteReservation = (reservationId) => {
-    dispatch(deleteReservation(reservationId));
+  const handleDeleteReservation = async (reservationId) => {
+    try {
+      dispatch(deleteReservation(reservationId));
+    } catch (error) {
+      console.error('Error adding room:', error);
+    }
   };
 
   return (

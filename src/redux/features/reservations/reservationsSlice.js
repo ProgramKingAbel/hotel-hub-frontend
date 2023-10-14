@@ -47,8 +47,13 @@ const reservationsSlice = createSlice({
       state.isLoading = false;
     });
 
+    builder.addCase(fetchReservations.pending, (state) => {
+      state.isLoading = true;
+    });
+
     builder.addCase(createReservation.fulfilled, (state, action) => {
       state.message = action.payload;
+      console.log(action.payload);
       state.error = '';
       state.isLoading = false;
     });

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Layout, ReservationForm } from './components';
+import {
+  Layout, ReservationForm, AddRoom, DeleteRoom,
+} from './components';
 import {
   Rooms,
   RoomItem,
@@ -22,6 +24,8 @@ const App = () => (
       <Route path="room/:roomId/reserve" element={<ReservationForm />} />
       <Route path="Reservations" element={<Reservations />} />
       <Route path="Profile" element={<Profile />} />
+      <Route path="AddRoom" element={<AddRoom />} />
+      <Route path="DeleteRoom" element={<DeleteRoom />} />
     </Route>
   </Routes>
 );
