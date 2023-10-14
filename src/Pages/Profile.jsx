@@ -13,10 +13,9 @@ const Profile = () => {
   const handleDeleteReservation = async (reservationId) => {
     try {
       dispatch(deleteReservation(reservationId));
-
-      } catch (error) {
-         console.error('Error adding room:', error);
-         }
+    } catch (error) {
+      console.error('Error adding room:', error);
+    }
   };
 
   return (
