@@ -1,15 +1,22 @@
 import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Typography, Button } from '@material-tailwind/react';
+import {
+  Typography, Button, Dialog,
+  Card,
+  CardHeader,
+  CardBody,
+} from '@material-tailwind/react';
 import { fetchRoomDetailsById } from '../redux/features/rooms/roomsSlice';
 import Table from '../components/Table/Table';
+import { ReservationForm } from '../components';
 
 const RoomItem = () => {
   const { roomId } = useParams();
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize the navigate function
   const roomDetails = useSelector((state) => state.room.roomDetails);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen((cur) => !cur);
 
   const TABLE_HEAD = ['Available Free packages'];
 
@@ -32,10 +39,10 @@ const RoomItem = () => {
     dispatch(fetchRoomDetailsById(roomId));
   }, [dispatch, roomId]);
 
-  const handleReserveClick = () => {
-    // Navigate to the "Reserve" page with the roomId parameter
-    navigate('./reserve');
-  };
+  // const handleReserveClick = () => {
+  //   // Navigate to the "Reserve" page with the roomId parameter
+  //   navigate('./reserve');
+  // };
 
   return (
     <div className="md:container w-full room_container pt-40 relative">
@@ -74,7 +81,7 @@ const RoomItem = () => {
           variant="outlined"
           className="flex items-center gap-3 rounded-full reserve_btn"
           size="lg"
-          onClick={() => handleReserveClick}
+          onClick={handleOpen}
         >
           <div>
             <svg
@@ -98,6 +105,28 @@ const RoomItem = () => {
             <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM188.3 147.1c7.6-4.2 16.8-4.1 24.3 .5l144 88c7.1 4.4 11.5 12.1 11.5 20.5s-4.4 16.1-11.5 20.5l-144 88c-7.4 4.5-16.7 4.7-24.3 .5s-12.3-12.2-12.3-20.9V168c0-8.7 4.7-16.7 12.3-20.9z" />
           </svg>
         </Button>
+
+        <Dialog
+          size="xs"
+          open={open}
+          handler={handleOpen}
+          className="bg-transparent shadow-none"
+        >
+          <Card className="mx-auto w-full max-w-[24rem]">
+            <CardHeader
+              variant="gradient"
+              color="blue"
+              className="mb-4 grid h-28 place-items-center"
+            >
+              <Typography variant="h3" color="white">
+                Reserve This Room
+              </Typography>
+            </CardHeader>
+            <CardBody className="flex flex-col gap-4">
+              <ReservationForm />
+            </CardBody>
+          </Card>
+        </Dialog>
       </div>
     </div>
   );
