@@ -14,7 +14,11 @@ import {
   ShoppingBagIcon,
   UserCircleIcon,
   PowerIcon,
+  PlusIcon,
+  TrashIcon,
+
 } from '@heroicons/react/24/solid';
+import { useSelector } from 'react-redux';
 
 const links = [
   {
@@ -36,7 +40,19 @@ const links = [
     exact: false,
   },
   {
-    path: '/',
+    path: '/app/AddRoom',
+    text: 'Add Room',
+    icon: PlusIcon,
+    exact: false,
+  },
+  {
+    path: '/app/DeleteRoom',
+    text: 'Delete Room',
+    icon: TrashIcon,
+    exact: false,
+  },
+  {
+    path: '/register',
     text: 'Sign Out',
     icon: PowerIcon,
     exact: false,
@@ -44,6 +60,9 @@ const links = [
 ];
 
 const Navbar = () => {
+  const currentUser = useSelector((state) => state.user.user);
+  console.log(currentUser);
+  const isAdmin = currentUser.role === 'admin';
   const { pathname } = useLocation();
   const [openMobileNav, setOpenMobileNav] = useState(false);
   const [activeLink, setActiveLink] = useState(pathname);
@@ -78,6 +97,7 @@ const Navbar = () => {
 
         <List>
           {links.map((link) => (
+            (isAdmin || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
             <ListItem key={link.text} className="mb-2 ml-4 list">
               {pathname !== '/' ? (
                 <NavLink
@@ -97,7 +117,7 @@ const Navbar = () => {
                 <span className="text-blue-700">{link.text}</span>
               )}
             </ListItem>
-          ))}
+            )))}
         </List>
       </Card>
 
@@ -149,6 +169,7 @@ const Navbar = () => {
       >
         <List>
           {links.map((link) => (
+            (isAdmin || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
             <ListItem key={link.text}>
               {pathname !== '/' ? (
                 <NavLink
@@ -167,7 +188,7 @@ const Navbar = () => {
                 <span>{link.text}</span>
               )}
             </ListItem>
-          ))}
+            )))}
         </List>
       </MobileNav>
     </>
