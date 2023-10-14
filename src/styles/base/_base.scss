@@ -89,5 +89,14 @@ body {
         background: none !important;
       }
     }
+
+    .mobile-nav-open {
+      width: 200px; /* Adjust this width to control how wide the mobile navigation appears */
+      transition: width 0.2s; /* You can adjust the transition duration */
+    }
+
+    .mobile-nav-open .toggle_icon {
+      transform: rotate(90deg);
+    }
   }
 }
