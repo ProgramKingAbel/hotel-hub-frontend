@@ -74,7 +74,7 @@ const Navbar = () => {
 
   return (
     <>
-      <Card className="h-[calc(100vh)] w-full p-2 gap-5 hidden md:flex rounded-none navbar">
+      <Card className="h-screen w-1/4 xl:w-1/5 md:w-1/5 lg:w-1/6 p-2 gap-5 hidden md:flex rounded-none navbar">
         <h2 className="mt-3 ml-4 nav_brand">
           <Typography variant="h3" color="black" className="font-semibold mb-4">
             Hotel Hub
@@ -88,9 +88,9 @@ const Navbar = () => {
                 <NavLink
                   exact={link.exact}
                   to={link.path}
-                  className={`flex items-center p-2 text-lg rounded-none  ${
+                  className={`flex items-center p-2 text-lg rounded-none ${
                     link.path === activeLink ? 'bg-blue-500' : ''
-                  }`} // Apply the conditional class here
+                  }`}
                   onClick={() => handleNavLinkClick(link.path)}
                 >
                   {React.createElement(link.icon, {
@@ -145,15 +145,15 @@ const Navbar = () => {
       <MobileNav
         open={openMobileNav}
         onClose={() => setOpenMobileNav(false)}
-        className="xl:hidden h-[calc(100vh)] w-full p-4 bg-gray-300 gap-8 md:flex rounded-none absolute top-0 left-0"
+        className="h-screen w-full p-4 bg-gray-300 gap-8 md:flex rounded-none absolute top-0 left-0"
         style={{
-          backgroundColor: 'rgba(100, 100, 100, 0.9)', // Adjust the opacity here (0.9 for 90% opacity)
-          zIndex: 1000, // Adjust the z-index to be above other page content
+          backgroundColor: 'rgba(100, 100, 100, 0.9)',
+          zIndex: 1000,
         }}
       >
         <List>
           {links.map((link) => (
-            <ListItem key={link.text} className="">
+            <ListItem key={link.text}>
               {pathname !== '/' ? (
                 <NavLink
                   to={link.path}

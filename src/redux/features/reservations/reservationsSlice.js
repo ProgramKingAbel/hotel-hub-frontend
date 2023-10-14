@@ -8,30 +8,38 @@ const initialState = {
   message: '',
 };
 
-export const fetchReservations = createAsyncThunk('reservations/fetchReservations', async () => {
-  const response = await axiosInstance.get('reservations');
-  console.log(response.data);
-  return response.data;
-});
+export const fetchReservations = createAsyncThunk(
+  'reservations/fetchReservations',
+  async () => {
+    const response = await axiosInstance.get('reservations');
+    console.log(response.data);
+    return response.data;
+  },
+);
 
 // Add a new async thunk for creating reservations
-export const createReservation = createAsyncThunk('reservations/createReservation', async (reservationData) => {
-  const response = await axiosInstance.post('reservations', reservationData);
-  console.log(response.data);
-  return response.data;
-});
+export const createReservation = createAsyncThunk(
+  'reservations/createReservation',
+  async (reservationData) => {
+    const response = await axiosInstance.post('reservations', reservationData);
+    return response.data;
+  },
+);
 
-export const deleteReservation = createAsyncThunk('reservations/deleteReservation', async (reservationId) => {
-  const response = await axiosInstance.delete(`reservations/${reservationId}`);
-  console.log(response.data);
-  return response.data;
-});
+export const deleteReservation = createAsyncThunk(
+  'reservations/deleteReservation',
+  async (reservationId) => {
+    const response = await axiosInstance.delete(
+      `reservations/${reservationId}`,
+    );
+    return response.data;
+  },
+);
 
 const reservationsSlice = createSlice({
   name: 'reservation',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchReservations.fulfilled, (state, action) => {
       state.reservations = action.payload;

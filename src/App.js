@@ -4,7 +4,13 @@ import {
   Layout, ReservationForm, AddRoom, DeleteRoom,
 } from './components';
 import {
-  Rooms, RoomItem, Reservations, Profile, Splash, Register, Login,
+  Rooms,
+  RoomItem,
+  Reservations,
+  Profile,
+  Splash,
+  Register,
+  Login,
 } from './Pages';
 
 const App = () => (
