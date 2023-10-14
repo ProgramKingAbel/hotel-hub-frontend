@@ -2,7 +2,13 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Layout, ReservationForm } from './components';
 import {
-  Rooms, RoomItem, Reservations, Profile, Splash, Register, Login,
+  Rooms,
+  RoomItem,
+  Reservations,
+  Profile,
+  Splash,
+  Register,
+  Login,
 } from './Pages';
 
 const App = () => (

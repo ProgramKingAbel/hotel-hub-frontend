@@ -9,7 +9,6 @@ import RoomCard from '../components/RoomCard/Room_card';
 const Rooms = () => {
   const dispatch = useDispatch();
   const rooms = useSelector((state) => state.room.rooms);
-  const isLoading = useSelector((state) => state.room.isLoading);
   const error = useSelector((state) => state.room.error);
   const token = localStorage.getItem('authToken');
   const [isTokenAvailable, setIsTokenAvailable] = useState(false);
@@ -20,10 +19,6 @@ const Rooms = () => {
       setIsTokenAvailable(true);
     }
   }, [dispatch, token, isTokenAvailable]);
-
-  if (isLoading || !token) {
-    return <div>Loading...</div>;
-  }
 
   if (error) {
     return (
