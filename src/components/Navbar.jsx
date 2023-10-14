@@ -130,7 +130,7 @@ const Navbar = () => {
       <MobileNav
         open={openMobileNav}
         onClose={() => setOpenMobileNav(false)}
-        className="h-screen w-full p-4 bg-gray-300 gap-8 md:flex rounded-none absolute top-0 left-0"
+        className="h-screen w-50 p-4 gap-8 md:flex rounded-none absolute top-0 left-0 mobile_nav"
         style={{
           backgroundColor: 'rgba(100, 100, 100, 0.9)',
           zIndex: 1000,
@@ -142,7 +142,7 @@ const Navbar = () => {
               {pathname !== '/' ? (
                 <NavLink
                   to={link.path}
-                  className={`text-blue-700 hover:text-blue-900 flex items-center ${
+                  className={`flex items-center items${
                     link.path === activeLink ? 'active' : ''
                   }`}
                   onClick={() => handleNavLinkClick(link.path)}
@@ -153,7 +153,7 @@ const Navbar = () => {
                   {link.text}
                 </NavLink>
               ) : (
-                <span className="text-blue-700 ">{link.text}</span>
+                <span>{link.text}</span>
               )}
             </ListItem>
           ))}

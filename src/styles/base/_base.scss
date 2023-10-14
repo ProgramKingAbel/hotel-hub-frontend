@@ -63,3 +63,31 @@ body {
     color: $color-white !important;
   }
 }
+
+.mobile_nav {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease-in-out;
+  display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile_nav {
+    height: 100vh !important;
+    position: fixed;
+    display: block !important;
+    background-color: $primary-color !important;
+
+    .items {
+      color: $color-white !important;
+
+      &:hover {
+        color: $primary-color !important;
+      }
+
+      &:focus {
+        background: none !important;
+      }
+    }
+  }
+}
