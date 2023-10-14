@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import "../styles/components/navbar.scss";
+import React, { useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import '../styles/components/navbar.scss';
 import {
   Typography,
   List,
@@ -8,36 +8,36 @@ import {
   Card,
   MobileNav,
   IconButton,
-} from "@material-tailwind/react";
+} from '@material-tailwind/react';
 import {
   HomeIcon,
   ShoppingBagIcon,
   UserCircleIcon,
   PowerIcon,
-} from "@heroicons/react/24/solid";
+} from '@heroicons/react/24/solid';
 
 const links = [
   {
-    path: "/app",
-    text: "Rooms",
+    path: '/app',
+    text: 'Rooms',
     icon: HomeIcon,
     exact: true,
   },
   {
-    path: "/app/Reservations",
-    text: "Reserve a Room",
+    path: '/app/Reservations',
+    text: 'Reserve a Room',
     icon: ShoppingBagIcon,
     exact: false,
   },
   {
-    path: "/app/Profile",
-    text: "My Reservations",
+    path: '/app/Profile',
+    text: 'My Reservations',
     icon: UserCircleIcon,
     exact: false,
   },
   {
-    path: "/",
-    text: "Sign Out",
+    path: '/',
+    text: 'Sign Out',
     icon: PowerIcon,
     exact: false,
   },
@@ -49,15 +49,13 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState(pathname);
   const screen = document.body;
 
-  document.addEventListener("click", () => {
-    screen.addEventListener("click", (event) => {
-      if (openMobileNav && screen.contains(event.target)) {
-        const togglerButton = document.querySelector(".toggle_icon");
-        if (!togglerButton.contains(event.target)) {
-          setOpenMobileNav(false);
-        }
+  screen.addEventListener('click', (event) => {
+    if (openMobileNav && screen.contains(event.target)) {
+      const togglerButton = document.querySelector('.toggle_icon');
+      if (!togglerButton.contains(event.target)) {
+        setOpenMobileNav(false);
       }
-    });
+    }
   });
 
   const handleNavLinkClick = (path) => {
@@ -81,16 +79,17 @@ const Navbar = () => {
         <List>
           {links.map((link) => (
             <ListItem key={link.text} className="mb-2 ml-4 list">
-              {pathname !== "/" ? (
+              {pathname !== '/' ? (
                 <NavLink
                   exact={link.exact}
                   to={link.path}
                   className={`flex items-center p-2 text-lg rounded-none ${
-                    link.path === activeLink ? "bg-blue-500" : ""
+                    link.path === activeLink ? 'bg-blue-500' : ''
                   }`}
-                  onClick={() => handleNavLinkClick(link.path)}>
+                  onClick={() => handleNavLinkClick(link.path)}
+                >
                   {React.createElement(link.icon, {
-                    className: "h-5 w-5 mr-2",
+                    className: 'h-5 w-5 mr-2',
                   })}
                   {link.text}
                 </NavLink>
@@ -106,7 +105,8 @@ const Navbar = () => {
         variant="text"
         className="ml-auto h-6 w-6 text-inherit text-black hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden toggle_icon absolute top-4 right-4"
         ripple={false}
-        onClick={toggleMobileNav}>
+        onClick={toggleMobileNav}
+      >
         {openMobileNav ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +114,8 @@ const Navbar = () => {
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
-            className="toggler_icon">
+            className="toggler_icon"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -126,7 +127,8 @@ const Navbar = () => {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             stroke="currentColor"
-            strokeWidth={2}>
+            strokeWidth={2}
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -141,21 +143,23 @@ const Navbar = () => {
         onClose={() => setOpenMobileNav(false)}
         className="h-screen w-50 p-4 gap-8 md:flex rounded-none absolute top-0 left-0 mobile_nav"
         style={{
-          backgroundColor: "rgba(100, 100, 100, 0.9)",
+          backgroundColor: 'rgba(100, 100, 100, 0.9)',
           zIndex: 1000,
-        }}>
+        }}
+      >
         <List>
           {links.map((link) => (
             <ListItem key={link.text}>
-              {pathname !== "/" ? (
+              {pathname !== '/' ? (
                 <NavLink
                   to={link.path}
                   className={`flex items-center items${
-                    link.path === activeLink ? "active" : ""
+                    link.path === activeLink ? 'active' : ''
                   }`}
-                  onClick={() => handleNavLinkClick(link.path)}>
+                  onClick={() => handleNavLinkClick(link.path)}
+                >
                   {React.createElement(link.icon, {
-                    className: "h-5 w-5 mr-2",
+                    className: 'h-5 w-5 mr-2',
                   })}
                   {link.text}
                 </NavLink>
