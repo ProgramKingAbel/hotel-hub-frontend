@@ -1,0 +1,23 @@
+.register {
+  background-image:
+    linear-gradient(
+      to right bottom,
+      rgba($color-white, 0.5),
+      rgba($primary-color-dark, 0.5)
+    ),
+    url(../../../public/images/sunset-pool.jpg);
+  background-size: cover;
+  border-radius: 0;
+
+  h4 {
+    color: $primary-color;
+  }
+
+  button {
+    background-color: $primary-color;
+  }
+
+  a {
+    color: $primary-color-dark;
+  }
+}
