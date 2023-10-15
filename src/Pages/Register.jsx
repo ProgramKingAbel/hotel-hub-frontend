@@ -118,7 +118,7 @@ const Register = () => {
               onChange={handleInputChange}
             />
             {error && (
-              <Typography color="red" className="-mt-3 -mb-3  text-xs font-normal">
+              <Typography color="red" className="-mt-3 -mb-3 text-xs font-normal">
                   {error.map((err) => (
                     err === 'Password is too short (minimum is 6 characters)' ? (
                       <p key="password">{err}</p>

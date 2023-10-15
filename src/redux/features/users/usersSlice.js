@@ -37,6 +37,19 @@ export const signInUser = createAsyncThunk('user/sign_in', async (userData) => {
   }
 });
 
+export const signOutUser = createAsyncThunk('user/sign_out', async () => {
+  const authToken = localStorage.getItem('authToken');
+  try {
+    const res = await axios.delete(`${BASE_URL}/sign_out`, {
+      headers: { Authorization: authToken },
+    });
+    localStorage.removeItem('authToken');
+    return res.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
 const usersSlice = createSlice({
   name: 'user',
   initialState,
@@ -50,6 +63,7 @@ const usersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // Sign Up User
       .addCase(signUpUser.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -58,10 +72,14 @@ const usersSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.user = action.payload.status.data;
-        state.registrationStatus = action.payload.status.message === 'User could not be created successfully'
+        state.registrationStatus = action.payload.status.message
+          === 'User could not be created successfully'
           ? 'failed'
           : 'success';
-        if (action.payload.status.message === 'User could not be created successfully') {
+        if (
+          action.payload.status.message
+          === 'User could not be created successfully'
+        ) {
           state.error = action.payload.status.errors;
         }
       })
@@ -70,6 +88,7 @@ const usersSlice = createSlice({
         state.error = action.error;
       })
 
+      // Sign In User
       .addCase(signInUser.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -78,11 +97,29 @@ const usersSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.user = action.payload.status.data;
-        state.loginStatus = action.payload.status.message === 'Signed in Successfully' ? 'success' : 'failed';
+        state.loginStatus = action.payload.status.message === 'Signed in Successfully'
+          ? 'success'
+          : 'failed';
       })
       .addCase(signInUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
+      })
+
+      // Sign out User
+      .addCase(signOutUser.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(signOutUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.user = action.payload;
+        state.loginStatus = 'signed_out';
+      })
+      .addCase(signOutUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
       });
   },
 });

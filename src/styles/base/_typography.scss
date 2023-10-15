@@ -4,11 +4,13 @@ body {
 
 .splash_intro {
   text-align: center;
+  color: $color-white;
 
   h1 {
     font-family: "Pacifico", cursive;
     font-size: 2.5rem;
-    // -webkit-text-stroke: 1px $secondary-color;
+    -webkit-text-stroke: 1px $color-white;
+    color: $primary-color;
     animation: moveInLeft 1s ease-out;
   }
 
@@ -17,8 +19,8 @@ body {
     letter-spacing: 0.313rem;
     text-transform: uppercase;
     font-weight: 700;
-    // -webkit-text-stroke: 1px $color-white;
-    // color: $secondary-color;
+    -webkit-text-stroke: 1px $color-white;
+    color: $secondary-color;
     animation: moveInRight 1s ease-out;
   }
 
