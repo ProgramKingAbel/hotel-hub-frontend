@@ -57,7 +57,7 @@ const usersSlice = createSlice({
       .addCase(signUpUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user = action.payload;
+        state.user = action.payload.status.data;
         state.registrationStatus = action.payload.status.message === 'User could not be created successfully'
           ? 'failed'
           : 'success';
@@ -77,7 +77,7 @@ const usersSlice = createSlice({
       .addCase(signInUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.user = action.payload;
+        state.user = action.payload.status.data;
         state.loginStatus = action.payload.status.message === 'Signed in Successfully' ? 'success' : 'failed';
       })
       .addCase(signInUser.rejected, (state, action) => {

@@ -29,11 +29,11 @@ export default function RoomCard({
         <img
           src={image && image}
           alt="ui/ux review check"
-          className="object-cover object-center sm:w-80 sm:h-200"
+          className="w-full h-auto object-cover object-center sm:w-100 sm:h-200"
         />
       </CardHeader>
       <CardBody>
-        <div className="mb-3 flex items-center justify-center mb-6">
+        <div className="flex items-center justify-center mb-6">
           <Typography variant="h5" color="blue-gray" className="font-medium">
             {name}
           </Typography>

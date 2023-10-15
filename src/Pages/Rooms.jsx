@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import OwlCarousel from 'react-owl-carousel';
 import { fetchRooms } from '../redux/features/rooms/roomsSlice';
@@ -9,16 +9,16 @@ import RoomCard from '../components/RoomCard/Room_card';
 const Rooms = () => {
   const dispatch = useDispatch();
   const rooms = useSelector((state) => state.room.rooms);
-  const isLoading = useSelector((state) => state.room.isLoading);
   const error = useSelector((state) => state.room.error);
+  const token = localStorage.getItem('authToken');
+  const [isTokenAvailable, setIsTokenAvailable] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchRooms());
-  }, [dispatch]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+    if (token && !isTokenAvailable) {
+      dispatch(fetchRooms());
+      setIsTokenAvailable(true);
+    }
+  }, [dispatch, token, isTokenAvailable]);
 
   if (error) {
     return (
@@ -30,7 +30,7 @@ const Rooms = () => {
   }
 
   return (
-    <div className="container mx-auto max-w-screen-xl lg:pl-40 w-full room_container pt-40">
+    <div className="md:container w-full room_container pt-40">
       <div className="text-center flex flex-col items-center pt-7">
         <h1 className="text-4xl font-black lg:text-3xl uppercase text-zinc-950">
           Available Rooms
@@ -41,7 +41,7 @@ const Rooms = () => {
         <hr className="border-t border-gray-300 w-28 text-center line" />
       </div>
 
-      <div className="container text-center flex flex-col items-center w-full">
+      <div className="md:container md:mx-auto text-center flex flex-col items-center w-full">
         <OwlCarousel
           className="owl-theme p-10"
           margin={10}

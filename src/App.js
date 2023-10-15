@@ -1,8 +1,16 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Layout } from './components';
 import {
-  Rooms, RoomItem, Reservations, Profile, Splash, Register, Login,
+  Layout, ReservationForm, AddRoom, DeleteRoom,
+} from './components';
+import {
+  Rooms,
+  RoomItem,
+  Reservations,
+  Profile,
+  Splash,
+  Register,
+  Login,
 } from './Pages';
 
 const App = () => (
@@ -13,8 +21,11 @@ const App = () => (
     <Route path="/app" element={<Layout />}>
       <Route index element={<Rooms />} />
       <Route path="room/:roomId" element={<RoomItem />} />
-      <Route path="reservations" element={<Reservations />} />
-      <Route path="profile" element={<Profile />} />
+      <Route path="room/:roomId/reserve" element={<ReservationForm />} />
+      <Route path="Reservations" element={<Reservations />} />
+      <Route path="Profile" element={<Profile />} />
+      <Route path="AddRoom" element={<AddRoom />} />
+      <Route path="DeleteRoom" element={<DeleteRoom />} />
     </Route>
   </Routes>
 );
