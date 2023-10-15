@@ -85,9 +85,8 @@ const reservationsSlice = createSlice({
     });
 
     builder.addCase(deleteReservation.fulfilled, (state, action) => {
-      state.reservations = state.reservations.filter(
-        (reservation) => reservation.id !== action.payload,
-      );
+      state.message = action.payload.message;
+      console.log(action.payload.message);
     });
   },
 });
