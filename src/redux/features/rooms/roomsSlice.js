@@ -37,7 +37,8 @@ const roomSlice = createSlice({
     builder.addCase(fetchRooms.fulfilled, (state, action) => {
       state.rooms = action.payload;
       console.log(action.payload);
-      state.error = '';
+      state.error = action.payload.error;
+      console.log(action.payload.error);
       state.isLoading = false;
     });
 

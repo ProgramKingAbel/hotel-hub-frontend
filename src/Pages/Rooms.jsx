@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import OwlCarousel from 'react-owl-carousel';
+import { useNavigate } from 'react-router';
 import { fetchRooms } from '../redux/features/rooms/roomsSlice';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -8,7 +9,9 @@ import RoomCard from '../components/RoomCard/Room_card';
 
 const Rooms = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const rooms = useSelector((state) => state.room.rooms);
+  console.log(rooms);
   const error = useSelector((state) => state.room.error);
   const token = localStorage.getItem('authToken');
   const [isTokenAvailable, setIsTokenAvailable] = useState(false);
@@ -19,6 +22,15 @@ const Rooms = () => {
       setIsTokenAvailable(true);
     }
   }, [dispatch, token, isTokenAvailable]);
+
+  if (!token) {
+    return (
+      <div>
+        Please log in to view available rooms.
+        <button type="button" onClick={() => { navigate('/login'); }}>Click here</button>
+      </div>
+    );
+  }
 
   if (error) {
     return (
