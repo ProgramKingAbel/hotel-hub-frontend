@@ -9,7 +9,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 const ReservationForm = () => {
   const dispatch = useDispatch();
   const rooms = useSelector((state) => state.room.rooms);
-  const currentUser = useSelector((state) => state.user.user);
+  const storedUserData = localStorage.getItem('userData');
+  const currentUser = JSON.parse(storedUserData);
   const navigate = useNavigate();
   console.log(currentUser.name);
   const { roomId } = useParams();
