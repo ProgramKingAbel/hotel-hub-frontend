@@ -48,6 +48,7 @@ export const signOutUser = createAsyncThunk('user/sign_out', async () => {
       headers: { Authorization: authToken },
     });
     localStorage.removeItem('authToken');
+    localStorage.removeItem('userData');
     return res.data;
   } catch (error) {
     throw new Error(error.message);
