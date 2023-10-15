@@ -8,7 +8,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(fetchReservations());
-  }, [dispatch, reservations]);
+  }, [dispatch]);
 
   const handleDeleteReservation = async (reservationId) => {
     try {

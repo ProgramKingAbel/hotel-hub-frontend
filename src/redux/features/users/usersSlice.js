@@ -17,6 +17,8 @@ export const signUpUser = createAsyncThunk('user/sign_up', async (userData) => {
 
     const authToken = response.headers.authorization;
     localStorage.setItem('authToken', authToken);
+    const currentUserData = JSON.stringify(response.data.status.data);
+    localStorage.setItem('userData', currentUserData);
 
     return response.data;
   } catch (error) {
@@ -30,6 +32,8 @@ export const signInUser = createAsyncThunk('user/sign_in', async (userData) => {
 
     const authToken = res.headers.authorization;
     localStorage.setItem('authToken', authToken);
+    const currentUserData = JSON.stringify(res.data.status.data);
+    localStorage.setItem('userData', currentUserData);
 
     return res.data;
   } catch (error) {
