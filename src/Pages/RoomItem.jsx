@@ -15,6 +15,8 @@ const RoomItem = () => {
   const { roomId } = useParams();
   const dispatch = useDispatch();
   const roomDetails = useSelector((state) => state.room.roomDetails);
+  const reservationError = useSelector((state) => state.reservations.error);
+  const reservationSuccess = useSelector((state) => state.reservations.message);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
@@ -121,6 +123,20 @@ const RoomItem = () => {
               <Typography variant="h3" color="white">
                 Reserve This Room
               </Typography>
+              {reservationSuccess && (
+              <p className="success-message">
+                Reservation created successfully!
+              </p>
+              )}
+              {reservationError && (
+              <div>
+                {reservationError.map((error, index) => (
+                  <p key={error[index]} className="error-message">
+                    {error}
+                  </p>
+                ))}
+              </div>
+              )}
             </CardHeader>
             <CardBody className="flex flex-col gap-4">
               <ReservationForm />
