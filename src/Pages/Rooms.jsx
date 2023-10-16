@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import OwlCarousel from 'react-owl-carousel';
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 import { fetchRooms } from '../redux/features/rooms/roomsSlice';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -9,7 +9,7 @@ import RoomCard from '../components/RoomCard/Room_card';
 
 const Rooms = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const rooms = useSelector((state) => state.room.rooms);
   const isLoading = useSelector((state) => state.room.isLoading);
   console.log(rooms);
@@ -37,22 +37,17 @@ const Rooms = () => {
   //   );
   // }
 
-  if (!token && !isLoading) {
-    return (
-      <div>
-        Please log in to view available rooms.
-        <button type="button" onClick={() => { navigate('/login'); }}>Click here</button>
-      </div>
-    );
-  }
+  // if (!token && !isLoading) {
+  //   return (
+  //     <div>
+  //       Please log in to view available rooms.
+  //       <button type="button" onClick={() => { navigate('/login'); }}>Click here</button>
+  //     </div>
+  //   );
+  // }
 
   if (error && !isLoading) {
-    return (
-      <div>
-        Error:
-        {error}
-      </div>
-    );
+    window.location.reload();
   }
 
   return (
@@ -97,7 +92,7 @@ const Rooms = () => {
                       id={room.id}
                     />
                   </div>
-                ))) : (<div>No rooms available.</div>
+                ))) : (<div>Fetching Rooms</div>
               )
 }
         </OwlCarousel>
