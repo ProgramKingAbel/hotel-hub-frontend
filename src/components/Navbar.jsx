@@ -152,7 +152,7 @@ const Navbar = () => {
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
-            className="toggler_icon"
+            className="toggler_icon z-10"
           >
             <path
               strokeLinecap="round"
@@ -166,6 +166,7 @@ const Navbar = () => {
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
+            className="z-10"
           >
             <path
               strokeLinecap="round"
@@ -178,8 +179,12 @@ const Navbar = () => {
 
       <MobileNav
         open={openMobileNav}
-        onClose={() => setOpenMobileNav(false)}
-        className="h-screen w-50 p-4 gap-8 md:flex rounded-none absolute top-0 left-0 mobile_nav"
+        onClose={() => {
+          setOpenMobileNav(false);
+        }}
+        className={`h-screen w-50 p-4 gap-8 md:flex rounded-none absolute top-0 left-0 mobile_nav ${
+          !openMobileNav && 'remove_nav'
+        }`}
       >
         <List>
           {links.map(

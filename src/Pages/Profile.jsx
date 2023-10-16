@@ -33,7 +33,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="md:container w-full ">
+    <div className="md:container w-full flex justify-center flex-col ">
       <div className="text-center flex flex-col items-center pt-7 mb-3 gap-3">
         <h1 className="text-4xl font-black lg:text-3xl uppercase text-zinc-950">
           Reserved Rooms
