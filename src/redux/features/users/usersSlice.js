@@ -47,8 +47,6 @@ export const signOutUser = createAsyncThunk('user/sign_out', async () => {
     const res = await axios.delete(`${BASE_URL}/sign_out`, {
       headers: { Authorization: authToken },
     });
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userData');
     return res.data;
   } catch (error) {
     throw new Error(error.message);
@@ -65,6 +63,7 @@ const usersSlice = createSlice({
     updateLoginStatus: (state, action) => {
       state.loginStatus = action.payload;
     },
+    resetUserState: () => initialState,
   },
   extraReducers: (builder) => {
     builder
@@ -129,5 +128,5 @@ const usersSlice = createSlice({
   },
 });
 
-export const { updateRegistrationStatus, updateLoginStatus } = usersSlice.actions;
+export const { updateRegistrationStatus, updateLoginStatus, resetUserState } = usersSlice.actions;
 export default usersSlice.reducer;

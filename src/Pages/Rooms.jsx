@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import OwlCarousel from 'react-owl-carousel';
 import { useNavigate } from 'react-router';
@@ -11,6 +11,7 @@ const Rooms = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const rooms = useSelector((state) => state.room.rooms);
+  const isLoading = useSelector((state) => state.room.isLoading);
   console.log(rooms);
   const error = useSelector((state) => state.room.error);
   const token = localStorage.getItem('authToken');
@@ -18,12 +19,25 @@ const Rooms = () => {
 
   useEffect(() => {
     if (token && !isTokenAvailable) {
-      dispatch(fetchRooms());
-      setIsTokenAvailable(true);
+      dispatch(fetchRooms())
+        .then((result) => {
+          const { payload } = result;
+          if (fetchRooms.fulfilled.match(result) && payload.length > 0) {
+            setIsTokenAvailable(true);
+          } else {
+            setIsTokenAvailable(false);
+          }
+        });
     }
   }, [dispatch, token, isTokenAvailable]);
 
-  if (!token) {
+  // if (token && !isTokenAvailable) {
+  //   return (
+  //     <div>Loading rooms... </div>
+  //   );
+  // }
+
+  if (!token && !isLoading) {
     return (
       <div>
         Please log in to view available rooms.
@@ -32,7 +46,7 @@ const Rooms = () => {
     );
   }
 
-  if (error) {
+  if (error && !isLoading) {
     return (
       <div>
         Error:
@@ -72,16 +86,20 @@ const Rooms = () => {
             },
           }}
         >
-          {rooms.map((room) => (
-            <div className="item" key={room.id}>
-              <RoomCard
-                name={room.name}
-                description={room.description}
-                image={room.image}
-                id={room.id}
-              />
-            </div>
-          ))}
+          {
+              rooms.length > 0 ? (
+                rooms.map((room) => (
+                  <div className="item" key={room.id}>
+                    <RoomCard
+                      name={room.name}
+                      description={room.description}
+                      image={room.image}
+                      id={room.id}
+                    />
+                  </div>
+                ))) : (<div>No rooms available.</div>
+              )
+}
         </OwlCarousel>
       </div>
     </div>

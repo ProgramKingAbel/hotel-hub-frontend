@@ -34,6 +34,9 @@ export const destroyRoom = createAsyncThunk('rooms/destroyRoom', async (roomId) 
 const roomSlice = createSlice({
   name: 'room',
   initialState,
+  reducers: {
+    resetRoomState: () => initialState,
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchRooms.fulfilled, (state, action) => {
       state.rooms = action.payload;
@@ -101,4 +104,5 @@ const roomSlice = createSlice({
   },
 });
 
+export const { resetRoomState } = roomSlice.actions;
 export default roomSlice.reducer;

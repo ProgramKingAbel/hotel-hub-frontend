@@ -19,7 +19,8 @@ import {
 
 } from '@heroicons/react/24/solid';
 import { useDispatch } from 'react-redux';
-import { signOutUser } from '../redux/features/users/usersSlice';
+import { resetUserState, signOutUser } from '../redux/features/users/usersSlice';
+import { resetRoomState } from '../redux/features/rooms/roomsSlice';
 
 const links = [
   {
@@ -101,8 +102,15 @@ const Navbar = () => {
 
   const handleSignOut = () => {
     dispatch(signOutUser())
-      .then(() => {
-        navigate('/login');
+      .then((result) => {
+        const { payload } = result;
+        if (signOutUser.fulfilled.match(result) && payload.status === 200) {
+          navigate('/login');
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('userData');
+          dispatch(resetUserState());
+          dispatch(resetRoomState());
+        }
       });
   };
 
