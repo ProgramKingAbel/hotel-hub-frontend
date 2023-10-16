@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { fetchRooms } from '../redux/features/rooms/roomsSlice';
-import { createReservation } from '../redux/features/reservations/reservationsSlice';
+import { createReservation, updateReservationStatus } from '../redux/features/reservations/reservationsSlice';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const ReservationForm = () => {
@@ -35,9 +35,9 @@ const ReservationForm = () => {
     setFormData({ ...formData, [field]: date });
   };
 
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const checkInISO = formData.check_in.toISOString();
     const checkOutISO = formData.check_out.toISOString();
@@ -47,18 +47,21 @@ const ReservationForm = () => {
       check_out: checkOutISO,
       room_id: formData.room,
     };
-    try {
-      await dispatch(createReservation(requestData));
-      navigate('/app/Profile');
-    } catch (error) {
-      console.error('Error adding room:', error);
-      setError('An error occurred. Please try again.');
-    }
+    dispatch(createReservation(requestData)).then((result) => {
+      const { payload } = result;
+      console.log(payload);
+      if (createReservation.fulfilled.match(result)) {
+        dispatch(updateReservationStatus(payload.status === 'Success' ? 'success' : 'failed'));
+        if (payload.message === 'Reservation created successfully') {
+          navigate('/app/Profile');
+        }
+      }
+    });
   };
 
   return (
     <div>
-      {error && <p className="error-message">{error}</p>}
+      {/* {error && <p className="error-message">{error}</p>} */}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username:</label>

@@ -10,6 +10,7 @@ const initialState = {
   rooms: [],
   error: '',
   roomDetails: {},
+  message: '',
 };
 
 export const fetchRooms = createAsyncThunk('rooms/fetchRooms', async () => axiosInstance.get('rooms').then((response) => response.data));
@@ -88,8 +89,7 @@ const roomSlice = createSlice({
     });
 
     builder.addCase(destroyRoom.fulfilled, (state, action) => {
-      const roomId = action.payload;
-      state.rooms = state.rooms.filter((room) => room.id !== roomId);
+      state.message = action.payload.message;
       state.isLoading = false;
       state.error = '';
     });
