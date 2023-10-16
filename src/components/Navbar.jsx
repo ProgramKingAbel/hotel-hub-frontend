@@ -16,7 +16,6 @@ import {
   PowerIcon,
   PlusIcon,
   TrashIcon,
-
 } from '@heroicons/react/24/solid';
 
 const links = [
@@ -91,7 +90,14 @@ const Navbar = () => {
     return (
       <div>
         Please log in to Continue
-        <button type="button" onClick={() => { navigate('/login'); }}>Click here</button>
+        <button
+          type="button"
+          onClick={() => {
+            navigate('/login');
+          }}
+        >
+          Click here
+        </button>
       </div>
     );
   }
@@ -106,28 +112,30 @@ const Navbar = () => {
         </h2>
 
         <List>
-          {links.map((link) => (
-            (isAdmin || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
-            <ListItem key={link.text} className="mb-2 ml-4 list">
-              {pathname !== '/' ? (
-                <NavLink
-                  exact={link.exact}
-                  to={link.path}
-                  className={`flex items-center p-2 text-lg rounded-none ${
-                    link.path === activeLink ? 'bg-blue-500' : ''
-                  }`}
-                  onClick={() => handleNavLinkClick(link.path)}
-                >
-                  {React.createElement(link.icon, {
-                    className: 'h-5 w-5 mr-2',
-                  })}
-                  {link.text}
-                </NavLink>
-              ) : (
-                <span className="text-blue-700">{link.text}</span>
-              )}
-            </ListItem>
-            )))}
+          {links.map(
+            (link) => (isAdmin
+                || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
+                <ListItem key={link.text} className="mb-2 ml-4 list">
+                  {pathname !== '/' ? (
+                    <NavLink
+                      exact={link.exact}
+                      to={link.path}
+                      className={`flex items-center p-2 text-lg rounded-none ${
+                        link.path === activeLink ? 'bg-blue-500' : ''
+                      }`}
+                      onClick={() => handleNavLinkClick(link.path)}
+                    >
+                      {React.createElement(link.icon, {
+                        className: 'h-5 w-5 mr-2',
+                      })}
+                      {link.text}
+                    </NavLink>
+                  ) : (
+                    <span className="text-blue-700">{link.text}</span>
+                  )}
+                </ListItem>
+            ),
+          )}
         </List>
       </Card>
 
@@ -172,33 +180,31 @@ const Navbar = () => {
         open={openMobileNav}
         onClose={() => setOpenMobileNav(false)}
         className="h-screen w-50 p-4 gap-8 md:flex rounded-none absolute top-0 left-0 mobile_nav"
-        style={{
-          backgroundColor: 'rgba(100, 100, 100, 0.9)',
-          zIndex: 1000,
-        }}
       >
         <List>
-          {links.map((link) => (
-            (isAdmin || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
-            <ListItem key={link.text}>
-              {pathname !== '/' ? (
-                <NavLink
-                  to={link.path}
-                  className={`flex items-center items${
-                    link.path === activeLink ? 'active' : ''
-                  }`}
-                  onClick={() => handleNavLinkClick(link.path)}
-                >
-                  {React.createElement(link.icon, {
-                    className: 'h-5 w-5 mr-2',
-                  })}
-                  {link.text}
-                </NavLink>
-              ) : (
-                <span>{link.text}</span>
-              )}
-            </ListItem>
-            )))}
+          {links.map(
+            (link) => (isAdmin
+                || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
+                <ListItem key={link.text}>
+                  {pathname !== '/' ? (
+                    <NavLink
+                      to={link.path}
+                      className={`flex items-center items${
+                        link.path === activeLink ? 'active' : ''
+                      }`}
+                      onClick={() => handleNavLinkClick(link.path)}
+                    >
+                      {React.createElement(link.icon, {
+                        className: 'h-5 w-5 mr-2',
+                      })}
+                      {link.text}
+                    </NavLink>
+                  ) : (
+                    <span>{link.text}</span>
+                  )}
+                </ListItem>
+            ),
+          )}
         </List>
       </MobileNav>
     </>
