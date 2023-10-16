@@ -1,27 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { fetchRooms, destroyRoom } from '../redux/features/rooms/roomsSlice';
 
 const DeleteRoom = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const rooms = useSelector((state) => state.room.rooms);
+  const [rooms, setRooms] = useState([]);
   const status = useSelector((state) => state.room.rooms.status);
   const error = useSelector((state) => state.room.rooms.error);
 
   useEffect(() => {
-    dispatch(fetchRooms());
+    dispatch(fetchRooms()).then((result) => {
+      if (fetchRooms.fulfilled.match(result)) {
+        console.log(result.payload);
+        setRooms(result.payload);
+      }
+    });
   }, [dispatch]);
 
   const handleDelete = async (roomId) => {
-    try {
-      await dispatch(destroyRoom(roomId));
-
-      navigate('/app');
-    } catch (error) {
-      console.error('Error deleting room:', error);
-    }
+    dispatch(destroyRoom(roomId)).then((result) => {
+      const { payload } = result;
+      if (destroyRoom.fulfilled.match(result) && payload.message === 'Room successfully deleted') {
+        setRooms((prevRooms) => prevRooms
+          .filter((r) => r.id !== roomId));
+      }
+    });
   };
 
   if (status === 'loading') {

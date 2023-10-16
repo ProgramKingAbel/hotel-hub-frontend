@@ -16,6 +16,7 @@ const RoomItem = () => {
   const { roomId } = useParams();
   const dispatch = useDispatch();
   const roomDetails = useSelector((state) => state.room.roomDetails);
+  const reservationError = useSelector((state) => state.reservations.error);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
@@ -110,6 +111,15 @@ const RoomItem = () => {
         >
           <Card className="mx-auto w-full max-w-[30rem]">
             <CardBody className="flex flex-col gap-4 p-6">
+              {reservationError && (
+                <div>
+                  {reservationError.map((error, index) => (
+                    <p key={error[index]} className="error-message">
+                      {error}
+                    </p>
+                  ))}
+                </div>
+              )}
               <ReservationForm />
             </CardBody>
           </Card>

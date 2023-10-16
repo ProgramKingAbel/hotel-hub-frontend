@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addRoom, fetchRooms } from '../redux/features/rooms/roomsSlice';
+import { addRoom } from '../redux/features/rooms/roomsSlice';
 
 const AddRoom = () => {
   const dispatch = useDispatch();
@@ -24,15 +24,13 @@ const AddRoom = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      await dispatch(addRoom(formData));
-
-      navigate('/app');
-
-      dispatch(fetchRooms());
-    } catch (error) {
-      console.error('Error adding room:', error);
-    }
+    dispatch(addRoom(formData)).then((result) => {
+      const { payload } = result;
+      console.log(payload);
+      if (addRoom.fulfilled.match(result) && payload.message === 'Room successfully created') {
+        navigate('/app');
+      }
+    });
   };
 
   const handleImageUpload = (e) => {

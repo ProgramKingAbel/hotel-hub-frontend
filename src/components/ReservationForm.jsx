@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Card,
-  Input,
-  Select,
-  Option,
-  Button,
-  Typography,
+  Card, Input, Button, Typography,
 } from '@material-tailwind/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { fetchRooms } from '../redux/features/rooms/roomsSlice';
-import { createReservation } from '../redux/features/reservations/reservationsSlice';
+import {
+  createReservation,
+  updateReservationStatus,
+} from '../redux/features/reservations/reservationsSlice';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const ReservationForm = () => {
@@ -23,6 +21,7 @@ const ReservationForm = () => {
   console.log(currentUser.name);
   const { roomId } = useParams();
   console.log(roomId);
+  const error = useSelector((state) => state.reservations.error);
   const [formData, setFormData] = useState({
     username: currentUser.name,
     room: roomId || '',
@@ -43,9 +42,9 @@ const ReservationForm = () => {
     setFormData({ ...formData, [field]: date });
   };
 
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const checkInISO = formData.check_in.toISOString();
     const checkOutISO = formData.check_out.toISOString();
@@ -55,13 +54,20 @@ const ReservationForm = () => {
       check_out: checkOutISO,
       room_id: formData.room,
     };
-    try {
-      await dispatch(createReservation(requestData));
-      navigate('/app/Profile');
-    } catch (error) {
-      console.error('Error adding room:', error);
-      setError('An error occurred. Please try again.');
-    }
+    dispatch(createReservation(requestData)).then((result) => {
+      const { payload } = result;
+      console.log(payload);
+      if (createReservation.fulfilled.match(result)) {
+        dispatch(
+          updateReservationStatus(
+            payload.status === 'Success' ? 'success' : 'failed',
+          ),
+        );
+        if (payload.message === 'Reservation created successfully') {
+          navigate('/app/Profile');
+        }
+      }
+    });
   };
 
   return (
@@ -70,7 +76,12 @@ const ReservationForm = () => {
         <Typography variant="h4" color="blue-gray" className="text-center">
           Room Reservation
         </Typography>
-        {error && <p className="error-message">{error}</p>}
+        {error && (
+        <p className="error-message w-80 text-red-500">
+          {error}
+          {' '}
+        </p>
+        )}
 
         <Card color="transparent" shadow={false}>
           <form
@@ -86,13 +97,20 @@ const ReservationForm = () => {
                 disabled
               />
               <div className="mt-3">
-                <Select label="Select Room" disabled={!!roomId}>
+                <select
+                  name="room"
+                  value={formData.room}
+                  onChange={handleInputChange}
+                  disabled={!!roomId}
+                  className="block w-full mt-1 p-2 border border-gray-300 rounded-md focus:border-black-800 focus:outline-none"
+                >
+                  <option value="">Select a room</option>
                   {rooms.map((room) => (
-                    <Option key={room.id} value={room.id}>
+                    <option key={room.id} value={room.id}>
                       {room.name}
-                    </Option>
+                    </option>
                   ))}
-                </Select>
+                </select>
               </div>
               <div>
                 <label>Check-In Date:</label>

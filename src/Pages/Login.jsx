@@ -9,7 +9,6 @@ import { signInUser, updateLoginStatus } from '../redux/features/users/usersSlic
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { error } = useSelector((state) => state.user);
 
   const [formData, setFormData] = useState({
@@ -80,11 +79,11 @@ const Login = () => {
             />
           </div>
           {error && (
-            <Typography color="red" className="mt-4 text-center font-small">
+            <Typography color="red" className="mt-4 text-center text-xs font-small">
               {error}
             </Typography>
           )}
-          <Button className="mt-4" type="submit">Log In</Button>
+          <Button className="mt-2" type="submit">Log In</Button>
           <Typography color="gray" className="mt-4 text-center font-normal">
             Don&apos;t have an account?
             {' '}
