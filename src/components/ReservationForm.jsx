@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { Card, Input, Select, Option, Button } from "@material-tailwind/react";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
-import DatePicker from "react-datepicker";
-import { fetchRooms } from "../redux/features/rooms/roomsSlice";
-import { createReservation } from "../redux/features/reservations/reservationsSlice";
-import "react-datepicker/dist/react-datepicker.css";
+import React, { useState, useEffect } from 'react';
+import {
+  Card,
+  Input,
+  Select,
+  Option,
+  Button,
+  Typography,
+} from '@material-tailwind/react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import { fetchRooms } from '../redux/features/rooms/roomsSlice';
+import { createReservation } from '../redux/features/reservations/reservationsSlice';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const ReservationForm = () => {
   const dispatch = useDispatch();
   const rooms = useSelector((state) => state.room.rooms);
-  const storedUserData = localStorage.getItem("userData");
+  const storedUserData = localStorage.getItem('userData');
   const currentUser = JSON.parse(storedUserData);
   const navigate = useNavigate();
   console.log(currentUser.name);
@@ -18,7 +25,7 @@ const ReservationForm = () => {
   console.log(roomId);
   const [formData, setFormData] = useState({
     username: currentUser.name,
-    room: roomId || "",
+    room: roomId || '',
     check_in: new Date(),
     check_out: new Date(),
   });
@@ -50,22 +57,26 @@ const ReservationForm = () => {
     };
     try {
       await dispatch(createReservation(requestData));
-      navigate("/app/Profile");
+      navigate('/app/Profile');
     } catch (error) {
-      console.error("Error adding room:", error);
-      setError("An error occurred. Please try again.");
+      console.error('Error adding room:', error);
+      setError('An error occurred. Please try again.');
     }
   };
 
   return (
-    <div className="md:container w-full reservation_form_container">
+    <div className="md:container w-full flex justify-center reservation_form_container">
       <div className="inner_reservation">
+        <Typography variant="h4" color="blue-gray" className="text-center">
+          Reserve a Room
+        </Typography>
         {error && <p className="error-message">{error}</p>}
 
         <Card color="transparent" shadow={false}>
           <form
             className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
-            onSubmit={handleSubmit}>
+            onSubmit={handleSubmit}
+          >
             <div className="mb-4 flex flex-col gap-6">
               <Input
                 size="lg"
@@ -75,8 +86,8 @@ const ReservationForm = () => {
                 disabled
               />
               <div className="mt-3">
-                <label>Check-Out Date:</label>
-                <Select label="Room" disabled={!!roomId}>
+                <label>Room:</label>
+                <Select label="Select Room" disabled={!!roomId}>
                   {rooms.map((room) => (
                     <Option key={room.id} value={room.id}>
                       {room.name}
@@ -89,8 +100,8 @@ const ReservationForm = () => {
                 <DatePicker
                   selected={formData.check_in}
                   name="check_in"
-                  onChange={(date) => handleDateChange(date, "check_in")}
-                  className="w-full border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:border-blue-500"
+                  onChange={(date) => handleDateChange(date, 'check_in')}
+                  className="w-full border border-gray-300 rounded-md p-2 focus:border-black-800"
                 />
               </div>
               <div>
@@ -98,13 +109,13 @@ const ReservationForm = () => {
                 <DatePicker
                   selected={formData.check_out}
                   name="check_out"
-                  onChange={(date) => handleDateChange(date, "check_out")}
-                  className="w-full border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:border-blue-500"
+                  onChange={(date) => handleDateChange(date, 'check_out')}
+                  className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-black-800"
                 />
               </div>
             </div>
 
-            <Button className="mt-6" fullWidth>
+            <Button className="mt-6" fullWidth type="submit">
               Submit
             </Button>
           </form>
