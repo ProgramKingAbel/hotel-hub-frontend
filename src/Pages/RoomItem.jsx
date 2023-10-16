@@ -40,15 +40,10 @@ const RoomItem = () => {
     dispatch(fetchRoomDetailsById(roomId));
   }, [dispatch, roomId]);
 
-  // const handleReserveClick = () => {
-  //   // Navigate to the "Reserve" page with the roomId parameter
-  //   navigate('./reserve');
-  // };
-
   return (
-    <div className="md:container w-full room_container p-20 relative">
+    <div className="md:container w-full relative room_detail">
       <div
-        className="container flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between texts-center lg:gap-20 gap-10 w-full h-screen  pt-20"
+        className="container flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between texts-center lg:gap-20 gap-10 w-full pt-20"
         key={roomDetails.name}
       >
         <div className="flex-9 lg:flex-grow-9 image_container">
@@ -77,7 +72,7 @@ const RoomItem = () => {
         </div>
       </div>
 
-      <div className="absolute  right-30 lg:right-10 bottom-80 lg:bottom-20">
+      <div className="absolute  right-30 lg:right-10 bottom-80 lg:bottom-20 reserve_btn">
         <Button
           variant="outlined"
           className="flex items-center gap-3 rounded-full reserve_btn"

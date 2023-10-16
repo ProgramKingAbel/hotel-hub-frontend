@@ -77,7 +77,7 @@ body {
 
 .room_detail {
   margin-top: 0;
-  height: auto !important;
+  height: 100% !important;
 }
 
 @media screen and (max-width: 768px) {
@@ -109,10 +109,20 @@ body {
     }
   }
 
-  // .room_detail {
-  //   height: 100% !important;
-  //   opacity: 1 !important;
-  //   margin-top: 3rem;
-  //   background-color: red;
-  // }
+  .room_detail {
+    height: 100% !important;
+    margin-top: 3rem;
+  }
+
+  .reserve_btn {
+    top: 30%;
+    left: 40%;
+    bottom: 100%;
+  }
+
+  .layout_container {
+    .nav_layout {
+      width: 0;
+    }
+  }
 }
