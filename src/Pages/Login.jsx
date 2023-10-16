@@ -10,7 +10,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { error } = useSelector((state) => state.user);
-  
+
   const [formData, setFormData] = useState({
     user: {
       email: '',
