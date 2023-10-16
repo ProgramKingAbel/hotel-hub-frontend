@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  Typography, Button, Dialog,
+  Typography,
+  Button,
+  Dialog,
   Card,
-  CardHeader,
   CardBody,
 } from '@material-tailwind/react';
 import { fetchRoomDetailsById } from '../redux/features/rooms/roomsSlice';
@@ -16,7 +17,6 @@ const RoomItem = () => {
   const dispatch = useDispatch();
   const roomDetails = useSelector((state) => state.room.roomDetails);
   const reservationError = useSelector((state) => state.reservations.error);
-  const reservationSuccess = useSelector((state) => state.reservations.message);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen((cur) => !cur);
 
@@ -41,15 +41,10 @@ const RoomItem = () => {
     dispatch(fetchRoomDetailsById(roomId));
   }, [dispatch, roomId]);
 
-  // const handleReserveClick = () => {
-  //   // Navigate to the "Reserve" page with the roomId parameter
-  //   navigate('./reserve');
-  // };
-
   return (
-    <div className="md:container w-full room_container pt-40 relative">
+    <div className="md:container w-full relative room_detail">
       <div
-        className="container flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between texts-center lg:gap-20 gap-10 w-full h-screen  pt-20"
+        className="container flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between texts-center lg:gap-20 gap-10 w-full pt-20"
         key={roomDetails.name}
       >
         <div className="flex-9 lg:flex-grow-9 image_container">
@@ -78,7 +73,7 @@ const RoomItem = () => {
         </div>
       </div>
 
-      <div className="absolute  right-30 lg:right-10 bottom-80 lg:bottom-20">
+      <div className="absolute  right-30 lg:right-10 bottom-80 lg:bottom-20 reserve_btn">
         <Button
           variant="outlined"
           className="flex items-center gap-3 rounded-full reserve_btn"
@@ -114,31 +109,17 @@ const RoomItem = () => {
           handler={handleOpen}
           className="bg-transparent shadow-none"
         >
-          <Card className="mx-auto w-full max-w-[24rem]">
-            <CardHeader
-              variant="gradient"
-              color="blue"
-              className="mb-4 grid h-28 place-items-center"
-            >
-              <Typography variant="h3" color="white">
-                Reserve This Room
-              </Typography>
-              {reservationSuccess && (
-              <p className="success-message">
-                Reservation created successfully!
-              </p>
-              )}
+          <Card className="mx-auto w-full max-w-[30rem]">
+            <CardBody className="flex flex-col gap-4 p-6">
               {reservationError && (
-              <div>
-                {reservationError.map((error, index) => (
-                  <p key={error[index]} className="error-message">
-                    {error}
-                  </p>
-                ))}
-              </div>
+                <div>
+                  {reservationError.map((error, index) => (
+                    <p key={error[index]} className="error-message">
+                      {error}
+                    </p>
+                  ))}
+                </div>
               )}
-            </CardHeader>
-            <CardBody className="flex flex-col gap-4">
               <ReservationForm />
             </CardBody>
           </Card>

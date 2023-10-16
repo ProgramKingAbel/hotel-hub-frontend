@@ -12,12 +12,12 @@ function Layout() {
   const roomLoading = useSelector((state) => state.room.isLoading);
 
   return (
-    <div className="flex relative">
-      <div className="w-1/5">
+    <div className="flex relative layout_container">
+      <div className="w-1/5 nav_layout">
         {/* Sidebar */}
         <Navbar />
       </div>
-      <div className="w-full sm:w-3/4 p-4">
+      <div className="w-full sm:w-3/4 p-4 outlet_layout">
         {/* Main Content Area */}
         <Outlet />
         {' '}
