@@ -16,7 +16,6 @@ import {
   // PowerIcon,
   PlusIcon,
   TrashIcon,
-
 } from '@heroicons/react/24/solid';
 import { useDispatch } from 'react-redux';
 import { resetUserState, signOutUser } from '../redux/features/users/usersSlice';
@@ -95,7 +94,14 @@ const Navbar = () => {
     return (
       <div>
         Please log in to Continue
-        <button type="button" onClick={() => { navigate('/login'); }}>Click here</button>
+        <button
+          type="button"
+          onClick={() => {
+            navigate('/login');
+          }}
+        >
+          Click here
+        </button>
       </div>
     );
   }
@@ -124,28 +130,30 @@ const Navbar = () => {
         </h2>
 
         <List>
-          {links.map((link) => (
-            (isAdmin || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
-            <ListItem key={link.text} className="mb-2 ml-4 list">
-              {pathname !== '/' ? (
-                <NavLink
-                  exact={link.exact}
-                  to={link.path}
-                  className={`flex items-center p-2 text-lg rounded-none ${
-                    link.path === activeLink ? 'bg-blue-500' : ''
-                  }`}
-                  onClick={() => handleNavLinkClick(link.path)}
-                >
-                  {React.createElement(link.icon, {
-                    className: 'h-5 w-5 mr-2',
-                  })}
-                  {link.text}
-                </NavLink>
-              ) : (
-                <span className="text-blue-700">{link.text}</span>
-              )}
-            </ListItem>
-            )))}
+          {links.map(
+            (link) => (isAdmin
+                || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
+                <ListItem key={link.text} className="mb-2 ml-4 list">
+                  {pathname !== '/' ? (
+                    <NavLink
+                      exact={link.exact}
+                      to={link.path}
+                      className={`flex items-center p-2 text-lg rounded-none ${
+                        link.path === activeLink ? 'bg-blue-500' : ''
+                      }`}
+                      onClick={() => handleNavLinkClick(link.path)}
+                    >
+                      {React.createElement(link.icon, {
+                        className: 'h-5 w-5 mr-2',
+                      })}
+                      {link.text}
+                    </NavLink>
+                  ) : (
+                    <span className="text-blue-700">{link.text}</span>
+                  )}
+                </ListItem>
+            ),
+          )}
         </List>
         <button onClick={handleSignOut} type="button">Sign Out</button>
       </Card>
@@ -163,7 +171,7 @@ const Navbar = () => {
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
-            className="toggler_icon"
+            className="toggler_icon z-10"
           >
             <path
               strokeLinecap="round"
@@ -177,6 +185,7 @@ const Navbar = () => {
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
+            className="z-10"
           >
             <path
               strokeLinecap="round"
@@ -189,35 +198,37 @@ const Navbar = () => {
 
       <MobileNav
         open={openMobileNav}
-        onClose={() => setOpenMobileNav(false)}
-        className="h-screen w-50 p-4 gap-8 md:flex rounded-none absolute top-0 left-0 mobile_nav"
-        style={{
-          backgroundColor: 'rgba(100, 100, 100, 0.9)',
-          zIndex: 1000,
+        onClose={() => {
+          setOpenMobileNav(false);
         }}
+        className={`h-screen w-50 p-4 gap-8 md:flex rounded-none absolute top-0 left-0 mobile_nav ${
+          !openMobileNav && 'remove_nav'
+        }`}
       >
         <List>
-          {links.map((link) => (
-            (isAdmin || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
-            <ListItem key={link.text}>
-              {pathname !== '/' ? (
-                <NavLink
-                  to={link.path}
-                  className={`flex items-center items${
-                    link.path === activeLink ? 'active' : ''
-                  }`}
-                  onClick={() => handleNavLinkClick(link.path)}
-                >
-                  {React.createElement(link.icon, {
-                    className: 'h-5 w-5 mr-2',
-                  })}
-                  {link.text}
-                </NavLink>
-              ) : (
-                <span>{link.text}</span>
-              )}
-            </ListItem>
-            )))}
+          {links.map(
+            (link) => (isAdmin
+                || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
+                <ListItem key={link.text}>
+                  {pathname !== '/' ? (
+                    <NavLink
+                      to={link.path}
+                      className={`flex items-center items${
+                        link.path === activeLink ? 'active' : ''
+                      }`}
+                      onClick={() => handleNavLinkClick(link.path)}
+                    >
+                      {React.createElement(link.icon, {
+                        className: 'h-5 w-5 mr-2',
+                      })}
+                      {link.text}
+                    </NavLink>
+                  ) : (
+                    <span>{link.text}</span>
+                  )}
+                </ListItem>
+            ),
+          )}
         </List>
         <button onClick={handleSignOut} type="button">Sign Out</button>
       </MobileNav>

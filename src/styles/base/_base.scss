@@ -81,11 +81,16 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .remove_nav {
+    z-index: -1 !important;
+  }
+
   .mobile_nav {
     height: 100vh !important;
     position: fixed;
     display: block !important;
     background-color: $primary-color !important;
+    z-index: 3;
 
     .items {
       color: $color-white !important;
