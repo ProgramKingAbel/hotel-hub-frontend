@@ -75,6 +75,11 @@ body {
   display: none !important;
 }
 
+.room_detail {
+  margin-top: 0;
+  height: auto !important;
+}
+
 @media screen and (max-width: 768px) {
   .mobile_nav {
     height: 100vh !important;
@@ -104,7 +109,10 @@ body {
     }
   }
 
-  .room_detail {
-    background-color: red !important;
-  }
+  // .room_detail {
+  //   height: 100% !important;
+  //   opacity: 1 !important;
+  //   margin-top: 3rem;
+  //   background-color: red;
+  // }
 }
