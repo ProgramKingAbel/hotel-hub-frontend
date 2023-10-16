@@ -68,7 +68,7 @@ const ReservationForm = () => {
     <div className="md:container w-full flex justify-center reservation_form_container">
       <div className="inner_reservation">
         <Typography variant="h4" color="blue-gray" className="text-center">
-          Reserve a Room
+          Room Reservation
         </Typography>
         {error && <p className="error-message">{error}</p>}
 
@@ -86,7 +86,6 @@ const ReservationForm = () => {
                 disabled
               />
               <div className="mt-3">
-                <label>Room:</label>
                 <Select label="Select Room" disabled={!!roomId}>
                   {rooms.map((room) => (
                     <Option key={room.id} value={room.id}>
@@ -115,8 +114,8 @@ const ReservationForm = () => {
               </div>
             </div>
 
-            <Button className="mt-6" fullWidth type="submit">
-              Submit
+            <Button className="mt-6 reservation_button" fullWidth type="submit">
+              Reserve
             </Button>
           </form>
         </Card>
