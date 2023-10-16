@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  Typography, Button, Dialog,
+  Typography,
+  Button,
+  Dialog,
   Card,
-  CardHeader,
   CardBody,
 } from '@material-tailwind/react';
 import { fetchRoomDetailsById } from '../redux/features/rooms/roomsSlice';
@@ -113,15 +114,6 @@ const RoomItem = () => {
           className="bg-transparent shadow-none"
         >
           <Card className="mx-auto w-full max-w-[24rem]">
-            <CardHeader
-              variant="gradient"
-              color="blue"
-              className="mb-4 grid h-28 place-items-center"
-            >
-              <Typography variant="h3" color="white">
-                Reserve This Room
-              </Typography>
-            </CardHeader>
             <CardBody className="flex flex-col gap-4">
               <ReservationForm />
             </CardBody>
