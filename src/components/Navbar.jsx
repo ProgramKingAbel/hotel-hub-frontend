@@ -13,11 +13,13 @@ import {
   HomeIcon,
   ShoppingBagIcon,
   UserCircleIcon,
-  PowerIcon,
+  // PowerIcon,
   PlusIcon,
   TrashIcon,
 
 } from '@heroicons/react/24/solid';
+import { useDispatch } from 'react-redux';
+import { signOutUser } from '../redux/features/users/usersSlice';
 
 const links = [
   {
@@ -50,12 +52,12 @@ const links = [
     icon: TrashIcon,
     exact: false,
   },
-  {
-    path: '/register',
-    text: 'Sign Out',
-    icon: PowerIcon,
-    exact: false,
-  },
+  // {
+  //   path: '/register',
+  //   text: 'Sign Out',
+  //   icon: PowerIcon,
+  //   exact: false,
+  // },
 ];
 
 const Navbar = () => {
@@ -68,6 +70,7 @@ const Navbar = () => {
   const [openMobileNav, setOpenMobileNav] = useState(false);
   const [activeLink, setActiveLink] = useState(pathname);
   const screen = document.body;
+  const dispatch = useDispatch();
 
   screen.addEventListener('click', (event) => {
     if (openMobileNav && screen.contains(event.target)) {
@@ -95,6 +98,13 @@ const Navbar = () => {
       </div>
     );
   }
+
+  const handleSignOut = () => {
+    dispatch(signOutUser())
+      .then(() => {
+        navigate('/login');
+      });
+  };
 
   return (
     <>
@@ -129,6 +139,7 @@ const Navbar = () => {
             </ListItem>
             )))}
         </List>
+        <button onClick={handleSignOut} type="button">Sign Out</button>
       </Card>
 
       <IconButton
@@ -200,6 +211,7 @@ const Navbar = () => {
             </ListItem>
             )))}
         </List>
+        <button onClick={handleSignOut} type="button">Sign Out</button>
       </MobileNav>
     </>
   );
