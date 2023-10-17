@@ -42,7 +42,9 @@ export default function RoomCard({
           <hr className="border-t border-gray-300 w-40 text-center line" />
         </div>
 
-        <Typography color="gray">{description}</Typography>
+        <Typography color="gray" className="room_description">
+          {description}
+        </Typography>
         <div className="group mt-8 inline-flex flex-wrap items-center gap-3">
           <Tooltip content="Free wifi">
             <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">

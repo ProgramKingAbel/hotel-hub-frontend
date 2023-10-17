@@ -68,10 +68,10 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState(pathname);
   const screen = document.body;
   const dispatch = useDispatch();
+  const togglerButton = document.querySelector('.toggle_icon');
 
-  if (openMobileNav) {
+  if (openMobileNav && togglerButton) {
     screen.addEventListener('click', (event) => {
-      const togglerButton = document.querySelector('.toggle_icon');
       if (
         screen.contains(event.target)
         && !togglerButton.contains(event.target)

@@ -80,6 +80,12 @@ body {
   height: 100% !important;
 }
 
+.room_description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 @media screen and (max-width: 768px) {
   .remove_nav {
     z-index: -1 !important;
