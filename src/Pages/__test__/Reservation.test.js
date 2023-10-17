@@ -2,14 +2,13 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import Reservations from '../Reservations';
 
-// Mock ReservationForm
 jest.mock('../../components/ReservationForm', () => {
   const ReservationForm = () => <div data-testid="reservation-form" />;
   ReservationForm.displayName = 'ReservationForm';
   return ReservationForm;
 });
 
-const ReservationsComponent = () => <Reservations />; // Add a display name here
+const ReservationsComponent = () => <Reservations />;
 
 describe('Reservations Component', () => {
   test('renders Reservations component', () => {

@@ -26,7 +26,6 @@ const AddRoom = () => {
 
     dispatch(addRoom(formData)).then((result) => {
       const { payload } = result;
-      console.log(payload);
       if (addRoom.fulfilled.match(result) && payload.message === 'Room successfully created') {
         navigate('/app');
       }

@@ -13,7 +13,6 @@ import {
   HomeIcon,
   ShoppingBagIcon,
   UserCircleIcon,
-  // PowerIcon,
   PlusIcon,
   TrashIcon,
 } from '@heroicons/react/24/solid';
@@ -52,19 +51,12 @@ const links = [
     icon: TrashIcon,
     exact: false,
   },
-  // {
-  //   path: '/register',
-  //   text: 'Sign Out',
-  //   icon: PowerIcon,
-  //   exact: false,
-  // },
 ];
 
 const Navbar = () => {
   const storedUserData = localStorage.getItem('userData');
   const currentUser = JSON.parse(storedUserData);
   const navigate = useNavigate();
-  console.log(currentUser);
   const isAdmin = currentUser.role === 'admin';
   const { pathname } = useLocation();
   const [openMobileNav, setOpenMobileNav] = useState(false);

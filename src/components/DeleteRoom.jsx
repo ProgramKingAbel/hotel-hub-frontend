@@ -11,7 +11,6 @@ const DeleteRoom = () => {
   useEffect(() => {
     dispatch(fetchRooms()).then((result) => {
       if (fetchRooms.fulfilled.match(result)) {
-        console.log(result.payload);
         setRooms(result.payload);
       }
     });

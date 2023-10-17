@@ -2,13 +2,35 @@
 
 exports[`Rooms Component matches snapshot 1`] = `
 <DocumentFragment>
-  <div>
-    Please log in to view available rooms.
-    <button
-      type="button"
+  <div
+    class="md:container w-full room_container pt-40"
+  >
+    <div
+      class="text-center flex flex-col items-center pt-7"
     >
-      Click here
-    </button>
+      <h1
+        class="text-4xl font-black lg:text-3xl uppercase text-zinc-950"
+      >
+        Available Rooms
+      </h1>
+      <h6
+        class="mb-10 font-serif text-gray-500"
+      >
+        Please select your rooms to view details
+      </h6>
+      <hr
+        class="border-t border-gray-300 w-28 text-center line"
+      />
+    </div>
+    <div
+      class="md:container md:mx-auto text-center flex flex-col items-center w-full"
+    >
+      <div>
+        <div>
+          Fetching Rooms
+        </div>
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;

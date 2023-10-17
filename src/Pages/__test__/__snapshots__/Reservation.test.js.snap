@@ -2,10 +2,20 @@
 
 exports[`Reservations Component renders Reservations component 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="md:container w-full reservation_container flex justify-center"
+  >
     <div
-      data-testid="reservation-form"
-    />
+      class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md mt-6 w-98 p-5"
+    >
+      <div
+        class="p-6 py-6"
+      >
+        <div
+          data-testid="reservation-form"
+        />
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;

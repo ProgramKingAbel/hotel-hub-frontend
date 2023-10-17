@@ -3,9 +3,8 @@ import { render } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../../redux/store';
-import Table from '../../components/Table/Table'; // Assuming the correct path
+import Table from '../../components/Table/Table';
 
-// Mock the localStorage
 const localStorageMock = {
   getItem: jest.fn(),
   setItem: jest.fn(),
@@ -15,7 +14,6 @@ global.localStorage = localStorageMock;
 
 describe('RoomItem Component', () => {
   it('renders RoomItem component', () => {
-    // Sample data for testing
     const tablehead = ['Name', 'Age'];
     const tablerows = [
       { name: 'John Doe', age: 25 },
@@ -31,9 +29,7 @@ describe('RoomItem Component', () => {
     );
   });
 
-  // Add a snapshot test
   it('matches snapshot', () => {
-    // Sample data for testing
     const tablehead = ['Name', 'Age'];
     const tablerows = [
       { name: 'John Doe', age: 25 },
