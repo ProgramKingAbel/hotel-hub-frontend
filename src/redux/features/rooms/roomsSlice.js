@@ -62,7 +62,6 @@ const roomSlice = createSlice({
       state.error = action.error.message;
     });
 
-    // Add room Bulders
     builder.addCase(addRoom.pending, (state) => {
       state.isLoading = true;
     });
@@ -78,7 +77,6 @@ const roomSlice = createSlice({
       state.error = action.error.message;
     });
 
-    // Destroy room Builder
     builder.addCase(destroyRoom.pending, (state) => {
       state.isLoading = true;
     });

@@ -5,7 +5,7 @@ import { fetchRooms, destroyRoom } from '../redux/features/rooms/roomsSlice';
 const DeleteRoom = () => {
   const dispatch = useDispatch();
   const [rooms, setRooms] = useState([]);
-  const status = useSelector((state) => state.room.rooms.status);
+  // const status = useSelector((state) => state.room.rooms.status);
   const error = useSelector((state) => state.room.rooms.error);
 
   useEffect(() => {
@@ -26,11 +26,7 @@ const DeleteRoom = () => {
     });
   };
 
-  if (status === 'loading') {
-    return <div>Loading...</div>;
-  }
-
-  if (status === 'failed') {
+  if (error) {
     return (
       <div>
         Error:
@@ -41,7 +37,7 @@ const DeleteRoom = () => {
 
   return (
     <div>
-      <h2>Delete a room</h2>
+      <h2>Delete a room only if it has no reservations</h2>
       <table className="min-w-full border border-collapse">
         <thead>
           <tr>
