@@ -80,7 +80,7 @@ const Login = () => {
           </div>
           {error && (
             <Typography color="red" className="mt-4 text-center text-xs font-small">
-              {error}
+              Invalid credentials. Please check your email and password
             </Typography>
           )}
           <Button className="mt-2" type="submit">Log In</Button>

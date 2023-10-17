@@ -46,5 +46,7 @@ export default function Table({ tablehead, tablerows }) {
 
 Table.propTypes = {
   tablehead: PropTypes.arrayOf(PropTypes.string).isRequired,
-  tablerows: PropTypes.arrayOf(PropTypes.string).isRequired,
+  tablerows: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  })).isRequired,
 };

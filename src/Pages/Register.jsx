@@ -79,6 +79,7 @@ const Register = () => {
               name="name"
               autoFocus
               minLength="3"
+              required
               type="text"
               value={formData.name}
               onChange={handleInputChange}
@@ -97,6 +98,7 @@ const Register = () => {
               size="lg"
               label="Email"
               name="email"
+              required
               value={formData.email}
               onChange={handleInputChange}
             />
@@ -114,6 +116,7 @@ const Register = () => {
               size="lg"
               label="Password"
               name="password"
+              required
               value={formData.password}
               onChange={handleInputChange}
             />
@@ -131,6 +134,7 @@ const Register = () => {
               size="lg"
               label="Confirm Password"
               name="password_confirmation"
+              required
               value={formData.password_confirmation}
               onChange={handleInputChange}
             />

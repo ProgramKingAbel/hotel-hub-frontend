@@ -18,9 +18,7 @@ const ReservationForm = () => {
   const storedUserData = localStorage.getItem('userData');
   const currentUser = JSON.parse(storedUserData);
   const navigate = useNavigate();
-  console.log(currentUser.name);
   const { roomId } = useParams();
-  console.log(roomId);
   const error = useSelector((state) => state.reservations.error);
   const [formData, setFormData] = useState({
     username: currentUser.name,
@@ -42,8 +40,6 @@ const ReservationForm = () => {
     setFormData({ ...formData, [field]: date });
   };
 
-  // const [error, setError] = useState(null);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const checkInISO = formData.check_in.toISOString();
@@ -56,7 +52,6 @@ const ReservationForm = () => {
     };
     dispatch(createReservation(requestData)).then((result) => {
       const { payload } = result;
-      console.log(payload);
       if (createReservation.fulfilled.match(result)) {
         dispatch(
           updateReservationStatus(

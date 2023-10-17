@@ -13,10 +13,12 @@ import {
   HomeIcon,
   ShoppingBagIcon,
   UserCircleIcon,
-  PowerIcon,
   PlusIcon,
   TrashIcon,
 } from '@heroicons/react/24/solid';
+import { useDispatch } from 'react-redux';
+import { resetUserState, signOutUser } from '../redux/features/users/usersSlice';
+import { resetRoomState } from '../redux/features/rooms/roomsSlice';
 
 const links = [
   {
@@ -49,24 +51,18 @@ const links = [
     icon: TrashIcon,
     exact: false,
   },
-  {
-    path: '/register',
-    text: 'Sign Out',
-    icon: PowerIcon,
-    exact: false,
-  },
 ];
 
 const Navbar = () => {
   const storedUserData = localStorage.getItem('userData');
   const currentUser = JSON.parse(storedUserData);
   const navigate = useNavigate();
-  console.log(currentUser);
   const isAdmin = currentUser.role === 'admin';
   const { pathname } = useLocation();
   const [openMobileNav, setOpenMobileNav] = useState(false);
   const [activeLink, setActiveLink] = useState(pathname);
   const screen = document.body;
+  const dispatch = useDispatch();
 
   screen.addEventListener('click', (event) => {
     if (openMobileNav && screen.contains(event.target)) {
@@ -101,6 +97,20 @@ const Navbar = () => {
       </div>
     );
   }
+
+  const handleSignOut = () => {
+    dispatch(signOutUser())
+      .then((result) => {
+        const { payload } = result;
+        if (signOutUser.fulfilled.match(result) && payload.status === 200) {
+          navigate('/login');
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('userData');
+          dispatch(resetUserState());
+          dispatch(resetRoomState());
+        }
+      });
+  };
 
   return (
     <>
@@ -137,6 +147,7 @@ const Navbar = () => {
             ),
           )}
         </List>
+        <button onClick={handleSignOut} type="button">Sign Out</button>
       </Card>
 
       <IconButton
@@ -211,6 +222,7 @@ const Navbar = () => {
             ),
           )}
         </List>
+        <button onClick={handleSignOut} type="button">Sign Out</button>
       </MobileNav>
     </>
   );

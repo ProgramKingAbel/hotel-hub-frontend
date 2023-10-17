@@ -13,7 +13,6 @@ export const fetchReservations = createAsyncThunk(
   'reservations/fetchReservations',
   async () => {
     const response = await axiosInstance.get('reservations');
-    console.log(response.data);
     return response.data;
   },
 );
@@ -26,14 +25,10 @@ export const createReservation = createAsyncThunk(
       return response.data;
     } catch (error) {
       if (error.response) {
-        console.log('Error status:', error.response.status);
-        console.log('Error data:', error.response.data);
         throw error.response.data;
       } else if (error.request) {
-        console.log('No response received:', error.request);
         throw error.request;
       } else {
-        console.log('Request setup error:', error.message);
         throw error.message;
       }
     }
@@ -71,22 +66,18 @@ const reservationsSlice = createSlice({
 
     builder.addCase(createReservation.fulfilled, (state, action) => {
       state.message = action.payload.message;
-      console.log(action.payload);
       state.error = '';
       state.isLoading = false;
     });
 
     builder.addCase(createReservation.rejected, (state, action) => {
-      // Accessing the error information
       const { error } = action;
       state.error = JSON.parse(error.message);
-      console.log('Error message:', JSON.parse(error.message));
       state.isLoading = false;
     });
 
     builder.addCase(deleteReservation.fulfilled, (state, action) => {
       state.message = action.payload.message;
-      console.log(action.payload.message);
     });
   },
 });
