@@ -16,15 +16,14 @@ const Rooms = () => {
 
   useEffect(() => {
     if (token && !isTokenAvailable) {
-      dispatch(fetchRooms())
-        .then((result) => {
-          const { payload } = result;
-          if (fetchRooms.fulfilled.match(result) && payload.length > 0) {
-            setIsTokenAvailable(true);
-          } else {
-            setIsTokenAvailable(false);
-          }
-        });
+      dispatch(fetchRooms()).then((result) => {
+        const { payload } = result;
+        if (fetchRooms.fulfilled.match(result) && payload.length > 0) {
+          setIsTokenAvailable(true);
+        } else {
+          setIsTokenAvailable(false);
+        }
+      });
     }
   }, [dispatch, token, isTokenAvailable]);
 
@@ -63,20 +62,20 @@ const Rooms = () => {
             },
           }}
         >
-          {
-              rooms.length > 0 ? (
-                rooms.map((room) => (
-                  <div className="item" key={room.id}>
-                    <RoomCard
-                      name={room.name}
-                      description={room.description}
-                      image={room.image}
-                      id={room.id}
-                    />
-                  </div>
-                ))) : (<div>Fetching Rooms</div>
-              )
-}
+          {rooms.length > 0 ? (
+            rooms.map((room) => (
+              <div className="item" key={room.id}>
+                <RoomCard
+                  name={room.name}
+                  description={`${room.description.slice(0, 50)}...`}
+                  image={room.image}
+                  id={room.id}
+                />
+              </div>
+            ))
+          ) : (
+            <div>Fetching Rooms</div>
+          )}
         </OwlCarousel>
       </div>
     </div>

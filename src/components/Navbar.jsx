@@ -69,14 +69,17 @@ const Navbar = () => {
   const screen = document.body;
   const dispatch = useDispatch();
 
-  screen.addEventListener('click', (event) => {
-    if (openMobileNav && screen.contains(event.target)) {
+  if (openMobileNav) {
+    screen.addEventListener('click', (event) => {
       const togglerButton = document.querySelector('.toggle_icon');
-      if (!togglerButton.contains(event.target)) {
+      if (
+        screen.contains(event.target)
+        && !togglerButton.contains(event.target)
+      ) {
         setOpenMobileNav(false);
       }
-    }
-  });
+    });
+  }
 
   const handleNavLinkClick = (path) => {
     setActiveLink(path);
