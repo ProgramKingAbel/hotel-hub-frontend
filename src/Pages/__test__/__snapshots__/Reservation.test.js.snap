@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reservations Component renders Reservations component 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      data-testid="reservation-form"
+    />
+  </div>
+</DocumentFragment>
+`;

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card, Typography } from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 
