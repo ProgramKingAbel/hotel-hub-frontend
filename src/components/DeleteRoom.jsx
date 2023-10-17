@@ -42,12 +42,6 @@ const DeleteRoom = () => {
 
   return (
     <div>
-      <div className="text-center flex flex-col items-center pt-7 mb-3 gap-3">
-        <h1 className="text-4xl font-black lg:text-3xl uppercase text-zinc-950">
-          Delete a room only if it has no reservations
-        </h1>
-        <hr className="border-t border-gray-300 w-28 text-center line" />
-      </div>
       <div className="reservation_inner_container flex justify-center">
         <Card className="h-full w-full overflow-scroll rounded-none">
           <table className="w-full min-w-max table-auto text-left">
@@ -85,7 +79,7 @@ const DeleteRoom = () => {
                         color="blue-gray"
                         className="font-normal text-center"
                       >
-                        {index + 1}
+                        {items.id}
                       </Typography>
                     </td>
                     <td className={classes}>
