@@ -110,7 +110,7 @@ const RoomItem = () => {
           className="bg-transparent shadow-none"
         >
           <Card className="mx-auto w-full max-w-[30rem]">
-            <CardBody className="flex flex-col gap-4 p-6">
+            <CardBody className="flex flex-col gap-4">
               {reservationError && (
                 <div>
                   {reservationError.map((error, index) => (

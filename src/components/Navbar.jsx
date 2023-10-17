@@ -8,16 +8,21 @@ import {
   Card,
   MobileNav,
   IconButton,
+  Button,
 } from '@material-tailwind/react';
 import {
   HomeIcon,
   ShoppingBagIcon,
   UserCircleIcon,
   PlusIcon,
+  UserMinusIcon,
   TrashIcon,
 } from '@heroicons/react/24/solid';
 import { useDispatch } from 'react-redux';
-import { resetUserState, signOutUser } from '../redux/features/users/usersSlice';
+import {
+  resetUserState,
+  signOutUser,
+} from '../redux/features/users/usersSlice';
 import { resetRoomState } from '../redux/features/rooms/roomsSlice';
 
 const links = [
@@ -99,17 +104,16 @@ const Navbar = () => {
   }
 
   const handleSignOut = () => {
-    dispatch(signOutUser())
-      .then((result) => {
-        const { payload } = result;
-        if (signOutUser.fulfilled.match(result) && payload.status === 200) {
-          navigate('/login');
-          localStorage.removeItem('authToken');
-          localStorage.removeItem('userData');
-          dispatch(resetUserState());
-          dispatch(resetRoomState());
-        }
-      });
+    dispatch(signOutUser()).then((result) => {
+      const { payload } = result;
+      if (signOutUser.fulfilled.match(result) && payload.status === 200) {
+        navigate('/login');
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('userData');
+        dispatch(resetUserState());
+        dispatch(resetRoomState());
+      }
+    });
   };
 
   return (
@@ -146,8 +150,15 @@ const Navbar = () => {
                 </ListItem>
             ),
           )}
+          <Button
+            onClick={handleSignOut}
+            variant="outlined"
+            className="flex gap-3 ml-7 list text-lg mt-3"
+          >
+            Sign Out
+            <UserMinusIcon className="h-5 w-5" />
+          </Button>
         </List>
-        <button onClick={handleSignOut} type="button">Sign Out</button>
       </Card>
 
       <IconButton
@@ -221,8 +232,15 @@ const Navbar = () => {
                 </ListItem>
             ),
           )}
+          <Button
+            onClick={handleSignOut}
+            variant="outlined"
+            className="flex items-center gap-3"
+          >
+            Sign Out
+            <UserMinusIcon className="h-5 w-5" />
+          </Button>
         </List>
-        <button onClick={handleSignOut} type="button">Sign Out</button>
       </MobileNav>
     </>
   );
