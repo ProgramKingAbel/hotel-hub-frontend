@@ -13,7 +13,7 @@ function Pagination({
 
   return (
     <nav>
-      <ul className="pagination flex space-x-2 mt-4 flex-end">
+      <ul className="pagination flex space-x-2 mt-2 flex-end">
         {pageNumbers.map((page) => (
           <li
             key={page}
