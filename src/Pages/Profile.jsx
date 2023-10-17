@@ -5,10 +5,17 @@ import {
   fetchReservations,
   deleteReservation,
 } from '../redux/features/reservations/reservationsSlice';
+import Pagination from '../components/Pagination/Pagination';
 
 const Profile = () => {
   const dispatch = useDispatch();
   const [reserved, setReserved] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const visibleItems = reserved.slice(indexOfFirstItem, indexOfLastItem);
 
   const TABLE_HEAD = ['S/N', 'CHECKING', 'CHECKOUT-OUT', 'ROOM', 'ACTION'];
 
@@ -62,8 +69,8 @@ const Profile = () => {
               </tr>
             </thead>
             <tbody>
-              {reserved.map((items, index) => {
-                const isLast = index === reserved.length - 1;
+              {visibleItems.map((items, index) => {
+                const isLast = index === visibleItems.length - 1;
                 const classes = isLast
                   ? 'p-4'
                   : 'p-4 border-b border-blue-gray-50';
@@ -122,6 +129,12 @@ const Profile = () => {
           </table>
         </Card>
       </div>
+      <Pagination
+        itemsPerPage={itemsPerPage}
+        totalItems={reserved.length}
+        currentPage={currentPage}
+        onPageChange={(newPage) => setCurrentPage(newPage)}
+      />
     </div>
   );
 };
