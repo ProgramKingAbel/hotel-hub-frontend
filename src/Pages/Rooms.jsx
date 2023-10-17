@@ -67,7 +67,7 @@ const Rooms = () => {
               <div className="item" key={room.id}>
                 <RoomCard
                   name={room.name}
-                  description={`${room.description.slice(0, 50)}...`}
+                  description={room.description}
                   image={room.image}
                   id={room.id}
                 />
