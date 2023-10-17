@@ -148,7 +148,7 @@ npm test
 
 ## 🔭 Future Features <a id="future-features"></a> 
  
-- **[Prevent room reservations if the same period is already booked]**
+- **[Add Payment checkout on reservation]**
 - **[Add Dark Mode]**
  
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
