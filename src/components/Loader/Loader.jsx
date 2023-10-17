@@ -3,7 +3,7 @@ import './Loader.scss';
 
 function Loader() {
   return (
-    <div className="loader_container">
+    <div className="loader_container h-screen">
       <div className="loader" />
     </div>
   );
