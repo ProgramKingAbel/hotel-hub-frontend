@@ -82,75 +82,82 @@ In order to run this project, you need to:
 
 Clone this repository to your desired folder:
 
-``` 
-  git clone https://github.com/ProgramKingAbel/hotel-hub-frontend.git 
+```
+  git clone https://github.com/ProgramKingAbel/hotel-hub-frontend.git
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Install
- 
- ```cd hotel-hub-frontend
-    npm install
- ```
+
+```cd hotel-hub-frontend
+   npm install
+```
+
  <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Usage
 
 To run the project execute the following command:
 
-``` 
+```
   npm start
 ```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Run Tests <a id="run-tests"></a>
 
 To run the tests, execute the following command:
+
 ```
 npm test
+
 ```
- 
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
-## 👥 Author <a id="authors"></a>  
- 
+
+## 👥 Author <a id="authors"></a>
+
 👤 **Abel Morara**
+
 - GitHub: [@githubhandle](https://github.com/ProgramKingAbel)
 - Twitter: [@twitterhandle](https://twitter.com/CeoAbel1)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/abel-morara/
- 
 
 👤 **Alex Waweru**
+
 - GitHub: [@githubhandle](https://github.com/AleWaweru)
 - Twitter: [@twitterhandle](https://twitter.com/home)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/alewaweru/ 
-
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/alewaweru/
 
 👤 **Enobong Isong**
+
 - GitHub: [@githubhandle](https://github.com/Enoisong)
 - Twitter: [@twitterhandle](https://twitter.com/Enobongmisong)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/enobong-isong/ 
-
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/enobong-isong/
 
 👤 **Peter Dumbar**
+
 - GitHub: [@githubhandle](https://github.com/Peter-Dumbari)
 - Twitter: [@twitterhandle](https://twitter.com/PeterDumbari)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/peterdumbari/ 
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/peterdumbari/
 
 👤 **Sahalu Aminu**
+
 - GitHub: [@githubhandle](https://github.com/sahlminkok)
 - Twitter: [@twitterhandle](https://twitter.com/sahlminkok)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/sahlminkok/ 
- 
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/sahlminkok/
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 🔭 Future Features <a id="future-features"></a> 
- 
+## 🔭 Future Features <a id="future-features"></a>
+
 - **[Add Payment checkout on reservation]**
 - **[Add Dark Mode]**
- 
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
@@ -164,6 +171,7 @@ Feel free to check the [issues page](https://github.com/ProgramKingAbel/hotel-hu
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- SUPPORT -->
+
 ## ⭐️ Show your support <a id="support"></a>
 
 If you like this project, kindly leave a comment below and share it with
@@ -172,20 +180,18 @@ someone who enjoys coding! or still give us a ⭐️!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGEMENTS -->
+
 ## 🙏 Acknowledgments <a id="acknowledgements"></a>
- 
--	Thanks to our amazing team members and coding partners for their invaluable contributions and dedication. 
+
+- Thanks to our amazing team members and coding partners for their invaluable contributions and dedication.
 - The Design reference for the website belongs to [Murat Korkmaz](https://www.behance.net/muratk). You can find the reference [here](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign/modules/173005583)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
- 
-## 📝 License <a id="license"></a> 
+
+## 📝 License <a id="license"></a>
 
 This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
