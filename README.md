@@ -108,9 +108,9 @@ To run the project execute the following command:
 
 To run the tests, execute the following command:
 ```
-npm test
+npx jest
+
 ```
- 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->

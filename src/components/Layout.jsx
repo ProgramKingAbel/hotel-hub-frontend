@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Navbar from './Navbar';
 import Loader from './Loader/Loader';
 
-function Layout() {
+const Layout = () => {
   const userLoading = useSelector((state) => state.user.isLoading);
   const reservationLoading = useSelector(
     (state) => state.reservations.isLoading,
