@@ -23,6 +23,6 @@ const Layout = () => {
       {(userLoading || reservationLoading || roomLoading) && <Loader />}
     </div>
   );
-}
+};
 
 export default Layout;
