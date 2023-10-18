@@ -106,11 +106,11 @@ const RoomCard = ({ name, description, image, id }) => {
   );
 };
 
-export default RoomCard;
-
 RoomCard.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
 };
+
+export default RoomCard;
