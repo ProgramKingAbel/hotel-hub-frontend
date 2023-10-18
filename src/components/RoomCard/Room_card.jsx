@@ -8,9 +8,9 @@ import {
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-export default function RoomCard({
+const RoomCard = ({
   name, description, image, id,
-}) {
+}) => {
   const navigate = useNavigate();
 
   const handleRoomClick = (roomId) => {
@@ -110,7 +110,7 @@ export default function RoomCard({
       </CardBody>
     </Card>
   );
-}
+};
 
 RoomCard.propTypes = {
   name: PropTypes.string.isRequired,
@@ -118,3 +118,5 @@ RoomCard.propTypes = {
   image: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
 };
+
+export default RoomCard;

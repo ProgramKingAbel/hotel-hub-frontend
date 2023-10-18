@@ -35,8 +35,6 @@ const ReservationForm = () => {
     setFormData({ ...formData, [field]: date });
   };
 
-  // const [error, setError] = useState(null);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const checkInISO = formData.check_in.toISOString();
@@ -61,7 +59,6 @@ const ReservationForm = () => {
 
   return (
     <div>
-      {/* {error && <p className="error-message">{error}</p>} */}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Username:</label>
