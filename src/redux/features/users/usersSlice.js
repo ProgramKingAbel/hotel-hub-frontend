@@ -47,8 +47,6 @@ export const signOutUser = createAsyncThunk('user/sign_out', async () => {
     const res = await axios.delete(`${BASE_URL}/sign_out`, {
       headers: { Authorization: authToken },
     });
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userData');
     return res.data;
   } catch (error) {
     throw new Error(error.message);
@@ -65,10 +63,10 @@ const usersSlice = createSlice({
     updateLoginStatus: (state, action) => {
       state.loginStatus = action.payload;
     },
+    resetUserState: () => initialState,
   },
   extraReducers: (builder) => {
     builder
-      // Sign Up User
       .addCase(signUpUser.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -93,7 +91,6 @@ const usersSlice = createSlice({
         state.error = action.error;
       })
 
-      // Sign In User
       .addCase(signInUser.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -111,7 +108,6 @@ const usersSlice = createSlice({
         state.error = action.error.message;
       })
 
-      // Sign out User
       .addCase(signOutUser.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -129,5 +125,5 @@ const usersSlice = createSlice({
   },
 });
 
-export const { updateRegistrationStatus, updateLoginStatus } = usersSlice.actions;
+export const { updateRegistrationStatus, updateLoginStatus, resetUserState } = usersSlice.actions;
 export default usersSlice.reducer;

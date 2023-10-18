@@ -64,6 +64,10 @@ body {
   }
 }
 
+.reservation_button {
+  background-color: $primary-color !important;
+}
+
 .mobile_nav {
   height: 0;
   overflow: hidden;
@@ -71,12 +75,28 @@ body {
   display: none !important;
 }
 
+.room_detail {
+  margin-top: 0;
+  height: 100% !important;
+}
+
+.room_description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 @media screen and (max-width: 768px) {
+  .remove_nav {
+    z-index: -1 !important;
+  }
+
   .mobile_nav {
     height: 100vh !important;
     position: fixed;
     display: block !important;
     background-color: $primary-color !important;
+    z-index: 3;
 
     .items {
       color: $color-white !important;
@@ -97,6 +117,23 @@ body {
 
     .mobile-nav-open .toggle_icon {
       transform: rotate(90deg);
+    }
+  }
+
+  .room_detail {
+    height: 100% !important;
+    margin-top: 3rem;
+  }
+
+  .reserve_btn {
+    top: 30%;
+    left: 40%;
+    bottom: 100%;
+  }
+
+  .layout_container {
+    .nav_layout {
+      width: 0;
     }
   }
 }

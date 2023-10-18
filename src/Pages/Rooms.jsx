@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import OwlCarousel from 'react-owl-carousel';
-import { useNavigate } from 'react-router';
 import { fetchRooms } from '../redux/features/rooms/roomsSlice';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -9,36 +8,27 @@ import RoomCard from '../components/RoomCard/Room_card';
 
 const Rooms = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const rooms = useSelector((state) => state.room.rooms);
-  console.log(rooms);
+  const isLoading = useSelector((state) => state.room.isLoading);
   const error = useSelector((state) => state.room.error);
   const token = localStorage.getItem('authToken');
   const [isTokenAvailable, setIsTokenAvailable] = useState(false);
 
   useEffect(() => {
     if (token && !isTokenAvailable) {
-      dispatch(fetchRooms());
-      setIsTokenAvailable(true);
+      dispatch(fetchRooms()).then((result) => {
+        const { payload } = result;
+        if (fetchRooms.fulfilled.match(result) && payload.length > 0) {
+          setIsTokenAvailable(true);
+        } else {
+          setIsTokenAvailable(false);
+        }
+      });
     }
   }, [dispatch, token, isTokenAvailable]);
 
-  if (!token) {
-    return (
-      <div>
-        Please log in to view available rooms.
-        <button type="button" onClick={() => { navigate('/login'); }}>Click here</button>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div>
-        Error:
-        {error}
-      </div>
-    );
+  if (error && !isLoading) {
+    window.location.reload();
   }
 
   return (
@@ -62,26 +52,30 @@ const Rooms = () => {
           nav
           responsive={{
             0: {
-              items: 1, // Show 1 item on screens less than 600px wide (typically mobile)
+              items: 1,
             },
             768: {
-              items: 2, // Show 2 items on screens 768px wide and wider (tablets)
+              items: 2,
             },
             992: {
-              items: 3, // Show 3 items on screens 992px wide and wider (small desktop)
+              items: 3,
             },
           }}
         >
-          {rooms.map((room) => (
-            <div className="item" key={room.id}>
-              <RoomCard
-                name={room.name}
-                description={room.description}
-                image={room.image}
-                id={room.id}
-              />
-            </div>
-          ))}
+          {rooms.length > 0 ? (
+            rooms.map((room) => (
+              <div className="item" key={room.id}>
+                <RoomCard
+                  name={room.name}
+                  description={room.description}
+                  image={room.image}
+                  id={room.id}
+                />
+              </div>
+            ))
+          ) : (
+            <div>Fetching Rooms</div>
+          )}
         </OwlCarousel>
       </div>
     </div>

@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RoomItem Component matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="relative flex flex-col bg-clip-border bg-white text-gray-700 shadow-md h-full w-full overflow-scroll rounded-none"
+  >
+    <table
+      class="w-full min-w-max table-auto text-left"
+    >
+      <thead>
+        <tr>
+          <th
+            class="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
+          >
+            <p
+              class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70"
+            >
+              Name
+            </p>
+          </th>
+          <th
+            class="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
+          >
+            <p
+              class="block antialiased font-sans text-sm text-blue-gray-900 font-normal leading-none opacity-70"
+            >
+              Age
+            </p>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="even:bg-blue-gray-50/50"
+        >
+          <td
+            class="p-4"
+          >
+            <p
+              class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"
+            >
+              John Doe
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="even:bg-blue-gray-50/50"
+        >
+          <td
+            class="p-4"
+          >
+            <p
+              class="block antialiased font-sans text-sm leading-normal text-blue-gray-900 font-normal"
+            >
+              Jane Doe
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</DocumentFragment>
+`;

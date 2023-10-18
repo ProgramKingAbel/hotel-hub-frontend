@@ -1,10 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '../../../utils/axios';
 
-// http://127.0.0.1:3000/api/v1/rooms
-
-// const BASE_URL = `${process.env.REACT_APP_HOST_URL}rooms`;
-
 const initialState = {
   isLoading: false,
   rooms: [],
@@ -21,25 +17,24 @@ export const fetchRoomDetailsById = createAsyncThunk('rooms/fetchRoomDetailsById
 
 export const addRoom = createAsyncThunk('rooms/addRoom', async (roomData) => {
   const response = await axiosInstance.post('rooms', roomData);
-  console.log(response.data);
   return response.data;
 });
 
 export const destroyRoom = createAsyncThunk('rooms/destroyRoom', async (roomId) => {
   const response = await axiosInstance.delete(`rooms/${roomId}`);
-  console.log(response.data);
   return response.data;
 });
 
 const roomSlice = createSlice({
   name: 'room',
   initialState,
+  reducers: {
+    resetRoomState: () => initialState,
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchRooms.fulfilled, (state, action) => {
       state.rooms = action.payload;
-      console.log(action.payload);
       state.error = action.payload.error;
-      console.log(action.payload.error);
       state.isLoading = false;
     });
 
@@ -67,7 +62,6 @@ const roomSlice = createSlice({
       state.error = action.error.message;
     });
 
-    // Add room Bulders
     builder.addCase(addRoom.pending, (state) => {
       state.isLoading = true;
     });
@@ -83,7 +77,6 @@ const roomSlice = createSlice({
       state.error = action.error.message;
     });
 
-    // Destroy room Builder
     builder.addCase(destroyRoom.pending, (state) => {
       state.isLoading = true;
     });
@@ -101,4 +94,5 @@ const roomSlice = createSlice({
   },
 });
 
+export const { resetRoomState } = roomSlice.actions;
 export default roomSlice.reducer;

@@ -8,16 +8,22 @@ import {
   Card,
   MobileNav,
   IconButton,
+  Button,
 } from '@material-tailwind/react';
 import {
   HomeIcon,
   ShoppingBagIcon,
   UserCircleIcon,
-  PowerIcon,
   PlusIcon,
+  UserMinusIcon,
   TrashIcon,
-
 } from '@heroicons/react/24/solid';
+import { useDispatch } from 'react-redux';
+import {
+  resetUserState,
+  signOutUser,
+} from '../redux/features/users/usersSlice';
+import { resetRoomState } from '../redux/features/rooms/roomsSlice';
 
 const links = [
   {
@@ -50,33 +56,30 @@ const links = [
     icon: TrashIcon,
     exact: false,
   },
-  {
-    path: '/register',
-    text: 'Sign Out',
-    icon: PowerIcon,
-    exact: false,
-  },
 ];
 
 const Navbar = () => {
   const storedUserData = localStorage.getItem('userData');
   const currentUser = JSON.parse(storedUserData);
   const navigate = useNavigate();
-  console.log(currentUser);
   const isAdmin = currentUser.role === 'admin';
   const { pathname } = useLocation();
   const [openMobileNav, setOpenMobileNav] = useState(false);
   const [activeLink, setActiveLink] = useState(pathname);
   const screen = document.body;
+  const dispatch = useDispatch();
+  const togglerButton = document.querySelector('.toggle_icon');
 
-  screen.addEventListener('click', (event) => {
-    if (openMobileNav && screen.contains(event.target)) {
-      const togglerButton = document.querySelector('.toggle_icon');
-      if (!togglerButton.contains(event.target)) {
+  if (openMobileNav && togglerButton) {
+    screen.addEventListener('click', (event) => {
+      if (
+        screen.contains(event.target)
+        && !togglerButton.contains(event.target)
+      ) {
         setOpenMobileNav(false);
       }
-    }
-  });
+    });
+  }
 
   const handleNavLinkClick = (path) => {
     setActiveLink(path);
@@ -91,10 +94,30 @@ const Navbar = () => {
     return (
       <div>
         Please log in to Continue
-        <button type="button" onClick={() => { navigate('/login'); }}>Click here</button>
+        <button
+          type="button"
+          onClick={() => {
+            navigate('/login');
+          }}
+        >
+          Click here
+        </button>
       </div>
     );
   }
+
+  const handleSignOut = () => {
+    dispatch(signOutUser()).then((result) => {
+      const { payload } = result;
+      if (signOutUser.fulfilled.match(result) && payload.status === 200) {
+        navigate('/login');
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('userData');
+        dispatch(resetUserState());
+        dispatch(resetRoomState());
+      }
+    });
+  };
 
   return (
     <>
@@ -106,28 +129,38 @@ const Navbar = () => {
         </h2>
 
         <List>
-          {links.map((link) => (
-            (isAdmin || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
-            <ListItem key={link.text} className="mb-2 ml-4 list">
-              {pathname !== '/' ? (
-                <NavLink
-                  exact={link.exact}
-                  to={link.path}
-                  className={`flex items-center p-2 text-lg rounded-none ${
-                    link.path === activeLink ? 'bg-blue-500' : ''
-                  }`}
-                  onClick={() => handleNavLinkClick(link.path)}
-                >
-                  {React.createElement(link.icon, {
-                    className: 'h-5 w-5 mr-2',
-                  })}
-                  {link.text}
-                </NavLink>
-              ) : (
-                <span className="text-blue-700">{link.text}</span>
-              )}
-            </ListItem>
-            )))}
+          {links.map(
+            (link) => (isAdmin
+                || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
+                <ListItem key={link.text} className="mb-2 ml-4 list">
+                  {pathname !== '/' ? (
+                    <NavLink
+                      exact={link.exact}
+                      to={link.path}
+                      className={`flex items-center p-2 text-lg rounded-none ${
+                        link.path === activeLink ? 'bg-blue-500' : ''
+                      }`}
+                      onClick={() => handleNavLinkClick(link.path)}
+                    >
+                      {React.createElement(link.icon, {
+                        className: 'h-5 w-5 mr-2',
+                      })}
+                      {link.text}
+                    </NavLink>
+                  ) : (
+                    <span className="text-blue-700">{link.text}</span>
+                  )}
+                </ListItem>
+            ),
+          )}
+          <Button
+            onClick={handleSignOut}
+            variant="outlined"
+            className="flex gap-3 ml-7 list text-lg mt-3"
+          >
+            Sign Out
+            <UserMinusIcon className="h-5 w-5" />
+          </Button>
         </List>
       </Card>
 
@@ -144,7 +177,7 @@ const Navbar = () => {
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
-            className="toggler_icon"
+            className="toggler_icon z-10"
           >
             <path
               strokeLinecap="round"
@@ -158,6 +191,7 @@ const Navbar = () => {
             fill="none"
             stroke="currentColor"
             strokeWidth={2}
+            className="z-10"
           >
             <path
               strokeLinecap="round"
@@ -170,35 +204,45 @@ const Navbar = () => {
 
       <MobileNav
         open={openMobileNav}
-        onClose={() => setOpenMobileNav(false)}
-        className="h-screen w-50 p-4 gap-8 md:flex rounded-none absolute top-0 left-0 mobile_nav"
-        style={{
-          backgroundColor: 'rgba(100, 100, 100, 0.9)',
-          zIndex: 1000,
+        onClose={() => {
+          setOpenMobileNav(false);
         }}
+        className={`h-screen w-50 p-4 gap-8 md:flex rounded-none absolute top-0 left-0 mobile_nav ${
+          !openMobileNav && 'remove_nav'
+        }`}
       >
         <List>
-          {links.map((link) => (
-            (isAdmin || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
-            <ListItem key={link.text}>
-              {pathname !== '/' ? (
-                <NavLink
-                  to={link.path}
-                  className={`flex items-center items${
-                    link.path === activeLink ? 'active' : ''
-                  }`}
-                  onClick={() => handleNavLinkClick(link.path)}
-                >
-                  {React.createElement(link.icon, {
-                    className: 'h-5 w-5 mr-2',
-                  })}
-                  {link.text}
-                </NavLink>
-              ) : (
-                <span>{link.text}</span>
-              )}
-            </ListItem>
-            )))}
+          {links.map(
+            (link) => (isAdmin
+                || (link.text !== 'Add Room' && link.text !== 'Delete Room')) && (
+                <ListItem key={link.text}>
+                  {pathname !== '/' ? (
+                    <NavLink
+                      to={link.path}
+                      className={`flex items-center items${
+                        link.path === activeLink ? 'active' : ''
+                      }`}
+                      onClick={() => handleNavLinkClick(link.path)}
+                    >
+                      {React.createElement(link.icon, {
+                        className: 'h-5 w-5 mr-2',
+                      })}
+                      {link.text}
+                    </NavLink>
+                  ) : (
+                    <span>{link.text}</span>
+                  )}
+                </ListItem>
+            ),
+          )}
+          <Button
+            onClick={handleSignOut}
+            variant="outlined"
+            className="flex items-center gap-3"
+          >
+            Sign Out
+            <UserMinusIcon className="h-5 w-5" />
+          </Button>
         </List>
       </MobileNav>
     </>
