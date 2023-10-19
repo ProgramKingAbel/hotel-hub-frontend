@@ -1,0 +1,139 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  // color: $color-white;
+
+  .navbar {
+    width: 100%;
+
+    .nav_brand {
+      width: 100%;
+      display: flex;
+      align-items: center !important;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .rounded-lg {
+      border-radius: 0 !important;
+
+      &:hover {
+        background: none !important;
+      }
+    }
+
+    .bg-blue-500 {
+      color: $color-white !important;
+      background-color: $primary-color !important;
+      width: 100%;
+      padding: inherit !important;
+    }
+  }
+
+  .toggle_icon {
+    color: $primary-color;
+    cursor: pointer;
+    margin: 5px;
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.text_container {
+  background-color: #fff;
+  color: black;
+}
+
+.reserve_btn {
+  background-color: $primary-color;
+  color: $color-white !important;
+  border-color: $primary-color !important;
+
+  .icon {
+    color: $color-white !important;
+  }
+}
+
+.reservation_button {
+  background-color: $primary-color !important;
+}
+
+.mobile_nav {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease-in-out;
+  display: none !important;
+}
+
+.room_detail {
+  margin-top: 0;
+  height: 100% !important;
+}
+
+.room_description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+  .remove_nav {
+    z-index: -1 !important;
+  }
+
+  .mobile_nav {
+    height: 100vh !important;
+    position: fixed;
+    display: block !important;
+    background-color: $primary-color !important;
+    z-index: 3;
+
+    .items {
+      color: $color-white !important;
+
+      &:hover {
+        color: $primary-color !important;
+      }
+
+      &:focus {
+        background: none !important;
+      }
+    }
+
+    .mobile-nav-open {
+      width: 200px; /* Adjust this width to control how wide the mobile navigation appears */
+      transition: width 0.2s; /* You can adjust the transition duration */
+    }
+
+    .mobile-nav-open .toggle_icon {
+      transform: rotate(90deg);
+    }
+  }
+
+  .room_detail {
+    height: 100% !important;
+    margin-top: 3rem;
+  }
+
+  .reserve_btn {
+    top: 30%;
+    left: 40%;
+    bottom: 100%;
+  }
+
+  .layout_container {
+    .nav_layout {
+      width: 0;
+    }
+  }
+}
