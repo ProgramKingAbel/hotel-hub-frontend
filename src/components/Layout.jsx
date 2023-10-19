@@ -16,7 +16,7 @@ const Layout = () => {
       <div className="md:w-3/10 sm:w-1/10 nav_layout">
         <Navbar />
       </div>
-      <div className="lg:w-3/4 md:w-3/4 sm:w-full w-full p-4 outlet_layout">
+      <div className="lg:w-3/4 md:full sm:w-full w-full p-4 outlet_layout">
         <Outlet />
         {' '}
       </div>
