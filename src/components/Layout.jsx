@@ -13,10 +13,10 @@ const Layout = () => {
 
   return (
     <div className="flex relative layout_container">
-      <div className="md:w-3/10 sm:w-4/10 nav_layout">
+      <div className="md:w-3/10 sm:w-1/10 nav_layout">
         <Navbar />
       </div>
-      <div className="w-full md:w-7/10  sm:w-3/4 p-4 outlet_layout">
+      <div className="lg:w-3/4 md:w-3/4 sm:w-full w-full p-4 outlet_layout">
         <Outlet />
         {' '}
       </div>
