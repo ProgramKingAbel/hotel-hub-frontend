@@ -28,7 +28,7 @@
 
 # 📖 Hotel Hub <a id="about-project"></a>
 
-**Hotel Hub** is a website that offers hotel booking and reservation services for travelers, providing a convenient way to find and book accommodations. You can select available rooms for a graphic list on the home page of the website, or you can just click on the reserve menu item and see the full list of available rooms. You can visit the repository for the [backend](https://github.com/ProgramKingAbel/hotel-hub-backend.git) of this project.
+**Hotel Hub** is a website that offers hotel booking and reservation services for travelers, providing a convenient way to find and book accommodations. You can select available rooms for a graphic list of rooms on the home page of the website, or you can just click on the reserve menu item and see the full list of available rooms. You can visit the repository for the [backend](https://github.com/ProgramKingAbel/hotel-hub-backend.git) of this project.
 
 ## 🛠 Built With <a id="built-with"></a>
 
