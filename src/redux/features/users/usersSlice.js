@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const BASE_URL = 'http://127.0.0.1:3000/users';
+const BASE_URL = 'https://hotel-hub-backend.onrender.com/users';
 
 const initialState = {
   isLoading: false,
